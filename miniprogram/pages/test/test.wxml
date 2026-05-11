@@ -1,0 +1,24 @@
+<view class="container">
+  <view class="progress-wrap">
+    <view class="progress-bar" style="width: {{progress}}%"></view>
+    <text class="progress-text">{{currentIndex + 1}} / {{totalQuestions}}</text>
+  </view>
+
+  <view class="question-block" wx:if="{{question}}">
+    <text class="question-number">[ Q{{currentIndex + 1}} ]</text>
+    <text class="question-text">{{question.text}}</text>
+  </view>
+
+  <view class="options-list">
+    <view
+      class="option-item"
+      wx:for="{{question.options}}"
+      wx:key="index"
+      data-index="{{index}}"
+      bindtap="onSelectOption"
+    >
+      <text class="option-marker">{{index === 0 ? 'A' : index === 1 ? 'B' : 'C'}}.</text>
+      <text class="option-label">{{item.label}}</text>
+    </view>
+  </view>
+</view>
