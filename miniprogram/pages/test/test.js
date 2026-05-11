@@ -8,7 +8,8 @@ Page({
     totalQuestions: questions.length,
     question: null,
     progress: 0,
-    answers: []
+    answers: [],
+    selecting: false
   },
 
   onLoad() {
@@ -19,7 +20,15 @@ Page({
     })
   },
 
+  onShow() {
+    this.data.selecting = false
+  },
+
   onSelectOption(e) {
+    if (this.data.selecting) return
+    if (!this.data.question) return
+    this.data.selecting = true
+
     const optionIndex = e.currentTarget.dataset.index
     const selectedOption = this.data.question.options[optionIndex]
     const answers = [...this.data.answers, selectedOption]
@@ -36,6 +45,7 @@ Page({
         progress: Math.round((nextIndex / questions.length) * 100),
         answers
       })
+      this.data.selecting = false
     }
   }
 })
