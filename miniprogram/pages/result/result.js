@@ -27,6 +27,12 @@ Page({
   },
 
   onShareAppMessage() {
+    if (!this.data.result) {
+      return {
+        title: '测测你的Bug人格',
+        path: '/pages/index/index'
+      }
+    }
     return {
       title: `我的出厂设置是「${this.data.result.name}」。测测你的Bug是什么？`,
       path: '/pages/index/index',
