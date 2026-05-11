@@ -1,0 +1,17 @@
+page {
+  --bg-primary: #000000;
+  --bg-secondary: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #888888;
+  --accent-green: #00ff41;
+  --accent-pink: #ff69b4;
+  --accent-red: #ff3333;
+  --accent-blue: #00d4ff;
+  --font-mono: 'Courier New', monospace;
+  --font-sans: -apple-system, 'Helvetica Neue', sans-serif;
+
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+}
