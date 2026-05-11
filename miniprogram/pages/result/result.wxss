@@ -1,0 +1,128 @@
+.container {
+  min-height: 100vh;
+  padding: 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.result-card {
+  width: 100%;
+  border: 2rpx solid;
+  padding: 48rpx 40rpx;
+  margin-bottom: 40rpx;
+}
+
+.type-badge {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8rpx 24rpx;
+  margin-bottom: 32rpx;
+}
+
+.badge-label {
+  font-size: 20rpx;
+  color: #000;
+  font-family: var(--font-mono);
+}
+
+.badge-code {
+  font-size: 16rpx;
+  color: #000;
+  font-family: var(--font-mono);
+  opacity: 0.7;
+}
+
+.type-name {
+  font-size: 48rpx;
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 32rpx;
+}
+
+.divider {
+  height: 2rpx;
+  width: 100%;
+  margin-bottom: 32rpx;
+}
+
+.diagnosis-block {
+  margin-bottom: 24rpx;
+}
+
+.diagnosis-label {
+  display: block;
+  font-size: 20rpx;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  margin-bottom: 16rpx;
+}
+
+.diagnosis-text {
+  font-size: 28rpx;
+  color: var(--text-primary);
+  line-height: 1.8;
+}
+
+.tagline-block {
+  padding-top: 24rpx;
+  border-top: 1rpx solid #333;
+}
+
+.tagline-text {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.color-swatch {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-bottom: 60rpx;
+}
+
+.swatch-bar {
+  width: 80rpx;
+  height: 24rpx;
+}
+
+.swatch-label {
+  font-size: 22rpx;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+}
+
+.actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+  margin-bottom: 40rpx;
+}
+
+.btn-share {
+  width: 100%;
+  padding: 28rpx 0;
+  background: transparent;
+  border: 2rpx solid;
+  border-radius: 0;
+  font-size: 32rpx;
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+.btn-retake {
+  text-align: center;
+  padding: 20rpx 0;
+  font-size: 24rpx;
+  color: var(--text-secondary);
+}
+
+.footer-note {
+  font-size: 20rpx;
+  color: var(--text-secondary);
+  opacity: 0.5;
+}

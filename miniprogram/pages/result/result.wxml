@@ -1,0 +1,48 @@
+<view class="container" wx:if="{{result}}">
+  <!-- Result card -->
+  <view class="result-card" style="border-color: {{result.color}}">
+    <!-- Type badge -->
+    <view class="type-badge" style="background: {{result.color}}">
+      <text class="badge-label">出厂设置</text>
+      <text class="badge-code">BMTI v1.0</text>
+    </view>
+
+    <!-- Personality name -->
+    <text class="type-name" style="color: {{result.color}}">{{result.name}}</text>
+
+    <!-- Divider -->
+    <view class="divider" style="background: {{result.color}}"></view>
+
+    <!-- System diagnosis -->
+    <view class="diagnosis-block">
+      <text class="diagnosis-label">&gt;&gt;&gt; 系统诊断报告</text>
+      <text class="diagnosis-text">{{result.diagnosis}}</text>
+    </view>
+
+    <!-- Tagline -->
+    <view class="tagline-block">
+      <text class="tagline-text">{{result.tagline}}</text>
+    </view>
+  </view>
+
+  <!-- RGBTI color swatch -->
+  <view class="color-swatch">
+    <view class="swatch-bar" style="background: {{result.color}}"></view>
+    <text class="swatch-label">你的色号 {{result.color}}</text>
+  </view>
+
+  <!-- Actions -->
+  <view class="actions">
+    <button class="btn-share" open-type="share" style="border-color: {{result.color}}; color: {{result.color}}">
+      <text>发给懂你Bug的人</text>
+    </button>
+
+    <view class="btn-retake" bindtap="onRetake">
+      <text>重新诊断</text>
+    </view>
+  </view>
+
+  <view class="footer-note">
+    <text>长按截图保存你的出厂设置报告</text>
+  </view>
+</view>
