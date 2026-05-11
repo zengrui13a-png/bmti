@@ -1,0 +1,27 @@
+<view class="container">
+  <view class="hero">
+    <text class="hero-glitch">BUG人格</text>
+    <text class="hero-subtitle">Bug Management Type Indicator</text>
+  </view>
+
+  <view class="description">
+    <text class="desc-line">不是定义你是谁。</text>
+    <text class="desc-line accent">是诊断你怎么卡住的。</text>
+  </view>
+
+  <view class="meta-info">
+    <text class="meta-item">· 7 道诊断题</text>
+    <text class="meta-item">· 16 种出厂设置</text>
+    <text class="meta-item">· 1 份系统报告</text>
+  </view>
+
+  <view class="start-btn" bindtap="onStartTest">
+    <text class="btn-text">开始诊断</text>
+    <text class="btn-hint">[ 按下以运行检测程序 ]</text>
+  </view>
+
+  <view class="footer">
+    <text class="footer-text">没有服务器会保存你的Bug记录。</text>
+    <text class="footer-text">这一切只发生在你的设备上。</text>
+  </view>
+</view>
