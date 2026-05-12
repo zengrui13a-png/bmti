@@ -1,34 +1,42 @@
 page {
-  --xp-bg: #ECE9D8;
-  --xp-white: #FFFFFF;
-  --xp-title-start: #2F71D8;
-  --xp-title-end: #5BA0F2;
-  --xp-title-text: #FFFFFF;
-  --xp-body: #FFFFFF;
-  --xp-border: #7F9DB9;
-  --xp-shadow: #ACA899;
-  --xp-text: #1E1E1E;
-  --xp-text-secondary: #6E6E6E;
-  --xp-accent: #2F71D8;
-  --xp-warn: #E8920D;
-  --xp-error: #D42828;
-  --xp-ok: #3C8D3C;
-  --color-pink: #D4568A;
-  --color-red: #C84040;
-  --color-blue: #3898B0;
-  --color-green: #38A84C;
+  /* Blueprint paper */
+  --paper: #F5F4EE;
+  --paper-warm: #F0EFE8;
+  --paper-cool: #EEF0F5;
+  /* Grid */
+  --grid-blue: #C8D4E8;
+  --grid-blue-light: #DEE6F2;
+  /* Ink */
+  --ink: #1A2332;
+  --ink-light: #5A6880;
+  --ink-faint: #9AA8BD;
+  /* BSOD */
+  --bsod-blue: #3355AA;
+  --bsod-text: #FFFFFF;
+  /* Neon accent for calibration */
+  --neon-pink: #E8507A;
+  --neon-red: #E04050;
+  --neon-blue: #3898D0;
+  --neon-green: #30B860;
+  --neon-glow-pink: rgba(232,80,122,0.45);
+  --neon-glow-blue: rgba(56,152,208,0.45);
+  --neon-glow-green: rgba(48,184,96,0.45);
+  /* Sketch */
+  --sketch-border: 2rpx dashed;
+  --sketch-color: #6A7888;
+  --sketch-light: #B8C4D4;
+  /* Fonts */
   --font-mono: 'Courier New', monospace;
-  --font-sans: 'Tahoma', 'Segoe UI', 'Microsoft YaHei', sans-serif;
-  --font-size-xs: 18rpx;
-  --font-size-sm: 22rpx;
-  --font-size-md: 28rpx;
-  --font-size-lg: 36rpx;
-  --font-size-xl: 48rpx;
-  --radius-sm: 6rpx;
-  --radius-md: 10rpx;
+  --font-sketch: 'Segoe UI', 'Tahoma', 'Microsoft YaHei', sans-serif;
 
-  background-color: var(--xp-bg);
-  color: var(--xp-text);
-  font-family: var(--font-sans);
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sketch);
   min-height: 100vh;
+
+  /* Blueprint graph paper grid */
+  background-image:
+    linear-gradient(rgba(200,212,232,0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,212,232,0.35) 1px, transparent 1px);
+  background-size: 24rpx 24rpx;
 }
