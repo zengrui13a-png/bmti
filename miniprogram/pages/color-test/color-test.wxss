@@ -1,215 +1,301 @@
-/* === CYBERPUNK COLOR CALIBRATION SCREEN === */
+/* === OS DESKTOP CALIBRATION STYLE === */
 
-.cyber-screen {
+.os-screen {
   min-height: 100vh;
-  background: #07080D;
+  background: #2D4A6B;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   padding: 40rpx 32rpx;
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
 }
 
-/* Subtle background texture */
-.cyber-bg-overlay {
+.os-desktop-bg {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
   z-index: 0;
-  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 40%, rgba(90,140,200,0.3) 0%, transparent 70%),
+    linear-gradient(180deg, #1E3A5F 0%, #2D4A6B 40%, #1A3048 100%);
 }
 
-.cyber-bg-dots {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  opacity: 0.25;
-  background-image:
-    radial-gradient(circle, rgba(255,255,255,0.3) 1rpx, transparent 1rpx);
-  background-size: 40rpx 40rpx;
-}
-
-.cyber-bg-gradient {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(45,55,90,0.4) 0%, transparent 70%);
-}
-
-/* === PANEL === */
-.cyber-panel {
+/* === WINDOW === */
+.os-window {
   width: 640rpx;
-  background: rgba(14,18,26,0.9);
-  border: 1rpx solid rgba(255,255,255,0.08);
+  background: #F0F0F0;
+  border: 1rpx solid #1A3A5C;
+  border-radius: 8rpx 8rpx 0 0;
+  box-shadow: 0 8rpx 32rpx rgba(0,0,0,0.4), 0 0 0 1rpx rgba(255,255,255,0.1) inset;
   position: relative;
   z-index: 1;
-}
-
-.cyber-panel-header {
-  padding: 36rpx 36rpx 0;
-  text-align: center;
-}
-
-.cyber-panel-label {
-  font-size: 20rpx;
-  font-family: var(--font-mono);
-  color: rgba(255,255,255,0.4);
-  letter-spacing: 8rpx;
-}
-
-.cyber-panel-divider {
-  display: flex;
-  align-items: center;
-  gap: 12rpx;
-  margin-top: 16rpx;
-}
-
-.cp-dot {
-  width: 6rpx; height: 6rpx;
-  background: rgba(255,255,255,0.3);
-  border-radius: 50%;
-}
-
-.cp-line {
+  overflow: hidden;
   flex: 1;
-  height: 1rpx;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-}
-
-.cyber-panel-body {
-  padding: 32rpx 36rpx 36rpx;
-}
-
-/* === CHANNEL HEADER === */
-.channel-header {
+  max-height: 85vh;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+}
+
+/* Title Bar */
+.os-titlebar {
+  display: flex;
   align-items: center;
-  margin-bottom: 20rpx;
+  justify-content: space-between;
+  background: linear-gradient(180deg, #F8F8F8 0%, #E0E0E0 40%, #D0D0D0 100%);
+  padding: 10rpx 16rpx;
+  border-bottom: 1rpx solid #B0B0B0;
 }
 
-.channel-badge {
-  padding: 6rpx 16rpx;
-  border: 1rpx solid rgba(255,255,255,0.15);
+.os-title-left {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
 }
 
-.channel-code {
-  font-size: 18rpx;
-  font-family: var(--font-mono);
-  color: rgba(255,255,255,0.7);
-  letter-spacing: 2rpx;
-}
+.os-title-icon { font-size: 24rpx; }
 
-.channel-step {
-  font-size: 20rpx;
-  font-family: var(--font-mono);
-  color: rgba(255,255,255,0.3);
-}
-
-/* === PROGRESS === */
-.cyber-progress {
-  height: 3rpx;
-  background: rgba(255,255,255,0.06);
-  margin-bottom: 36rpx;
-}
-
-.cyber-progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, rgba(255,255,255,0.2), rgba(255,255,255,0.6));
-  transition: width 0.3s ease;
-}
-
-/* === QUESTION === */
-.cyber-question {
-  display: block;
-  font-size: 30rpx;
+.os-title-text {
+  font-size: 22rpx;
   font-weight: 600;
-  color: rgba(255,255,255,0.9);
-  line-height: 1.5;
+  color: #1A1A1A;
+}
+
+.os-title-btns { display: flex; gap: 4rpx; }
+
+.os-btn-min, .os-btn-max, .os-btn-close {
+  width: 28rpx; height: 28rpx;
+  border-radius: 4rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18rpx;
+  background: #E8E8E8;
+  border: 1rpx solid #B8B8B8;
+  color: #555;
+}
+
+.os-btn-close { background: #E85030; border-color: #C03020; color: #FFF; }
+
+/* Menu Bar */
+.os-menubar {
+  display: flex;
+  background: #F0F0F0;
+  padding: 6rpx 16rpx;
+  border-bottom: 1rpx solid #D0D0D0;
+  gap: 0;
+}
+
+.os-menu {
+  padding: 4rpx 16rpx;
+  font-size: 20rpx;
+  color: #333;
+  border-radius: 4rpx;
+}
+
+/* Toolbar */
+.os-toolbar {
+  display: flex;
+  align-items: center;
+  background: #E8ECF2;
+  padding: 12rpx 20rpx;
+  border-bottom: 1rpx solid #D0D0D0;
+  gap: 16rpx;
+}
+
+.os-tb-label {
+  font-size: 18rpx;
+  color: #444;
+  white-space: nowrap;
+}
+
+.os-tb-divider {
+  width: 1rpx;
+  height: 24rpx;
+  background: #C0C0C0;
+}
+
+/* Body */
+.os-body {
+  background: #FFFFFF;
+  padding: 28rpx;
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Progress */
+.calib-progress {
   margin-bottom: 28rpx;
 }
 
-/* === OPTIONS === */
-.cyber-options {
-  display: flex;
-  flex-direction: column;
-  gap: 14rpx;
-  margin-bottom: 32rpx;
+.calib-label {
+  display: block;
+  font-size: 18rpx;
+  color: #777;
+  margin-bottom: 8rpx;
 }
 
-.cyber-opt {
+.calib-track {
+  height: 8rpx;
+  background: #E0E0E0;
+  border: 1rpx solid #C0C0C0;
+  border-radius: 4rpx;
+  overflow: hidden;
+}
+
+.calib-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4A90D8, #2F71D8);
+  transition: width 0.3s ease;
+}
+
+/* Calibration Content */
+.calib-header {
+  margin-bottom: 24rpx;
+}
+
+.calib-module {
+  display: block;
+  font-size: 20rpx;
+  font-family: var(--font-mono);
+  color: #2F71D8;
+  font-weight: 700;
+  letter-spacing: 2rpx;
+  margin-bottom: 4rpx;
+}
+
+.calib-tagline {
+  display: block;
+  font-size: 22rpx;
+  color: #444;
+  font-weight: 600;
+}
+
+.calib-question {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1A1A1A;
+  line-height: 1.5;
+  margin-bottom: 24rpx;
+}
+
+/* Options — like display preset selection */
+.calib-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.calib-opt {
   display: flex;
   align-items: flex-start;
   gap: 16rpx;
   padding: 22rpx 20rpx;
-  background: rgba(255,255,255,0.03);
-  border: 1rpx solid rgba(255,255,255,0.06);
+  background: #F5F6F8;
+  border: 2rpx solid #E0E4E8;
+  border-radius: 6rpx;
 }
 
-.cyber-opt-active {
-  background: rgba(255,255,255,0.08);
-  border-color: rgba(255,255,255,0.25);
+.calib-opt-sel {
+  background: #EBF2FD;
+  border-color: #2F71D8;
+  box-shadow: 0 0 0 2rpx rgba(47,113,216,0.15);
 }
 
-.cyber-opt-marker {
-  font-size: 24rpx;
-  color: rgba(255,255,255,0.4);
+.calib-opt-radio {
+  width: 28rpx; height: 28rpx;
+  border: 2rpx solid #B0B8C0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
   margin-top: 2rpx;
 }
 
-.cyber-opt-active .cyber-opt-marker {
-  color: rgba(255,255,255,0.9);
+.calib-opt-sel .calib-opt-radio {
+  border-color: #2F71D8;
 }
 
-.cyber-opt-body {
-  flex: 1;
+.calib-radio-dot {
+  width: 14rpx; height: 14rpx;
+  background: #2F71D8;
+  border-radius: 50%;
 }
 
-.cyber-opt-label {
+.calib-opt-text { flex: 1; }
+
+.calib-opt-name {
   display: block;
   font-size: 26rpx;
   font-weight: 600;
-  color: rgba(255,255,255,0.85);
+  color: #1A1A1A;
   line-height: 1.4;
 }
 
-.cyber-opt-desc {
+.calib-opt-desc {
   display: block;
   font-size: 20rpx;
-  color: rgba(255,255,255,0.4);
+  color: #777;
   line-height: 1.4;
   margin-top: 4rpx;
 }
 
-/* === BUTTON === */
-.cyber-btn-wrap {
+/* Footer */
+.os-footer {
+  padding: 16rpx 28rpx;
+  background: #F0F0F0;
+  border-top: 1rpx solid #D0D0D0;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
-.cyber-btn {
+.os-btn {
+  padding: 12rpx 40rpx;
+  font-size: 24rpx;
+  border: 1rpx solid #B0B0B0;
+  border-radius: 6rpx;
+  background: #F0F0F0;
+  color: #999;
+}
+
+.os-btn-active {
+  background: linear-gradient(180deg, #5BA0F2 0%, #2F71D8 100%);
+  border-color: #1D4EA0;
+  color: #FFF;
+  font-weight: 700;
+}
+
+.os-btn-active:active {
+  background: linear-gradient(180deg, #2F71D8 0%, #1D4EA0 100%);
+}
+
+/* Taskbar */
+.os-taskbar {
+  position: fixed;
+  bottom: 0; left: 0;
   width: 100%;
-  padding: 24rpx 0;
-  background: rgba(255,255,255,0.04);
-  border: 1rpx solid rgba(255,255,255,0.12);
-  font-size: 26rpx;
-  font-family: var(--font-mono);
-  font-weight: 600;
-  color: rgba(255,255,255,0.3);
-  letter-spacing: 4rpx;
-  border-radius: 0;
+  height: 80rpx;
+  background: rgba(20,30,50,0.92);
+  backdrop-filter: blur(20rpx);
+  display: flex;
+  align-items: center;
+  padding: 0 24rpx;
+  gap: 8rpx;
+  z-index: 10;
 }
 
-.cyber-btn-ready {
-  color: rgba(255,255,255,0.9);
-  border-color: rgba(255,255,255,0.35);
+.os-taskbar-item {
+  padding: 8rpx 20rpx;
+  border-radius: 6rpx;
+  font-size: 18rpx;
+  color: rgba(255,255,255,0.7);
   background: rgba(255,255,255,0.06);
 }
 
-.cyber-btn-ready:active {
-  background: rgba(255,255,255,0.14);
-  border-color: rgba(255,255,255,0.6);
+.os-taskbar-active {
+  background: rgba(255,255,255,0.15);
+  color: #FFF;
+  box-shadow: 0 0 8rpx rgba(47,113,216,0.4);
 }

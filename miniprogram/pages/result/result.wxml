@@ -47,7 +47,7 @@
 
       <view class="toggle-row">
         <button class="xp-btn-toggle" bindtap="onOpenColorMode">
-          🎨 开启色卡分析
+          🖥 显示校准
         </button>
       </view>
 

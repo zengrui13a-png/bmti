@@ -7,14 +7,19 @@ Page({
     totalQuestions: colorQuestions.length,
     question: null,
     colorValues: { R: 0, G: 0, B: 0, T: 0 },
+    resultName: '',
     selectedIndex: -1,
     selecting: false
   },
 
   onLoad() {
+    var typeIndex = app.globalData.typeIndex
+    var results = require('../../data/results')
+    var resultName = results[typeIndex] ? results[typeIndex].name : '未知型号'
     this.setData({
       totalQuestions: colorQuestions.length,
-      question: colorQuestions[0]
+      question: colorQuestions[0],
+      resultName: resultName
     })
   },
 
