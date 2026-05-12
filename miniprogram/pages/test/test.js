@@ -9,6 +9,7 @@ Page({
     question: null,
     progress: 0,
     answers: [],
+    selectedIndex: -1,
     selecting: false
   },
 
@@ -26,11 +27,17 @@ Page({
 
   onSelectOption(e) {
     if (this.data.selecting) return
+    const optionIndex = e.currentTarget.dataset.index
+    this.setData({ selectedIndex: optionIndex })
+  },
+
+  onNextStep() {
+    if (this.data.selecting) return
+    if (this.data.selectedIndex < 0) return
     if (!this.data.question) return
     this.data.selecting = true
 
-    const optionIndex = e.currentTarget.dataset.index
-    const selectedOption = this.data.question.options[optionIndex]
+    const selectedOption = this.data.question.options[this.data.selectedIndex]
     const answers = [...this.data.answers, selectedOption]
     const nextIndex = this.data.currentIndex + 1
 
@@ -43,7 +50,8 @@ Page({
         currentIndex: nextIndex,
         question: questions[nextIndex],
         progress: Math.round((nextIndex / questions.length) * 100),
-        answers
+        answers,
+        selectedIndex: -1
       })
       this.data.selecting = false
     }
