@@ -1,7 +1,9 @@
 <view class="cyber-screen" wx:if="{{result}}">
-  <!-- ANIMATED BACKGROUND -->
+  <!-- MULTI-GRADIENT BACKGROUND -->
   <view class="color-bg-overlay">
-    <view class="bg-color-fill" style="background-color: {{bgColor}}"></view>
+    <view class="bg-gradient-1" style="background-image: {{gradients.g1}}"></view>
+    <view class="bg-gradient-2" style="background-image: {{gradients.g2}}"></view>
+    <view class="bg-gradient-3" style="background-image: {{gradients.g3}}"></view>
     <view class="bg-glow-pulse" style="background-color: {{bgColor}}"></view>
     <view class="bg-rays-rotate"></view>
   </view>
@@ -13,11 +15,13 @@
     <view class="particle p3"></view>
     <view class="particle p4"></view>
     <view class="particle p5"></view>
+    <view class="particle p6"></view>
+    <view class="particle p7"></view>
   </view>
 
   <!-- MAIN CARD -->
   <view class="cyber-card">
-    <view class="card-border-glow" style="border-color: {{bgColor}}"></view>
+    <view class="card-border-glow"></view>
     <view class="card-corner card-corner-tl"></view>
     <view class="card-corner card-corner-tr"></view>
     <view class="card-corner card-corner-bl"></view>
@@ -42,11 +46,12 @@
       </view>
 
       <view class="spectrum-section">
-        <text class="cyber-tag">// SPECTRUM</text>
+        <text class="cyber-tag">// RGBA_SPECTRUM</text>
         <view class="spectrum-bar">
-          <view class="spec-segment" style="background: {{bgColor}}; flex: 1;"></view>
-          <view class="spec-segment" style="background: {{bgColor}}; flex: 1; opacity: 0.65;"></view>
-          <view class="spec-segment" style="background: {{bgColor}}; flex: 1; opacity: 0.30;"></view>
+          <view class="spec-segment spec-r" style="background: rgba({{cvR}},0,0,0.6); flex: 1;"></view>
+          <view class="spec-segment spec-g" style="background: rgba(0,{{cvG}},0,0.6); flex: 1;"></view>
+          <view class="spec-segment spec-b" style="background: rgba(0,0,{{cvB}},0.6); flex: 1;"></view>
+          <view class="spec-segment" style="background: {{bgColor}}; flex: 2;"></view>
         </view>
         <text class="rgba-value">{{rgba}}</text>
       </view>

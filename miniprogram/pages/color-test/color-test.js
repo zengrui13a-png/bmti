@@ -34,28 +34,23 @@ Page({
     this.data.selecting = true
 
     const opt = this.data.question.options[this.data.selectedIndex]
-    const colorValues = { ...this.data.colorValues }
+    const cv = { ...this.data.colorValues }
 
-    if (this.data.question.channel === 'R') {
-      colorValues.R = opt.r
-    } else if (this.data.question.channel === 'G') {
-      colorValues.G = opt.g
-    } else if (this.data.question.channel === 'B') {
-      colorValues.B = opt.b
-    } else if (this.data.question.channel === 'T') {
-      colorValues.T = opt.t
-    }
+    if (opt.r !== undefined) cv.R = opt.r
+    if (opt.g !== undefined) cv.G = opt.g
+    if (opt.b !== undefined) cv.B = opt.b
+    if (opt.t !== undefined) cv.T = opt.t
 
     const nextIndex = this.data.currentIndex + 1
 
     if (nextIndex >= colorQuestions.length) {
-      app.globalData.colorValues = colorValues
+      app.globalData.colorValues = cv
       wx.redirectTo({ url: '/pages/color-result/color-result' })
     } else {
       this.setData({
         currentIndex: nextIndex,
         question: colorQuestions[nextIndex],
-        colorValues,
+        colorValues: cv,
         selectedIndex: -1
       })
       this.data.selecting = false

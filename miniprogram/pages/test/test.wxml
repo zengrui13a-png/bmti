@@ -20,11 +20,11 @@
 
       <view class="question-area" wx:if="{{question}}">
         <view class="dim-meta">
-          <text class="dim-label">{{question.dimLabel}}</text>
+          <text class="dim-module">{{question.module}}</text>
+          <text class="dim-tagline">{{question.tagline}}</text>
         </view>
-        <view class="q-badge">Q{{currentIndex + 1}}</view>
         <text class="q-text">{{question.text}}</text>
-        <text class="dim-desc">{{question.dimDesc}}</text>
+        <text class="dim-desc">{{question.desc}}</text>
       </view>
 
       <view class="options-list">

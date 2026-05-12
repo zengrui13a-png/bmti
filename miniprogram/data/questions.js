@@ -1,78 +1,90 @@
-// 7 questions with deconstructive tech-jargon dimension labels
-// Dimensions: D0=CrashHandler, D1=CoreConflict, D2=UpdateVector, D3=BackgroundDaemon
+// BMTI Diagnostic Modules — CS-jargon deconstruction
+// Scoring: dim 0=Bug处理, 1=核心冲突, 2=更新方向, 3=后台进程
+// Each question has 4 options: A/B → value=0, C/D → value=1 (richer labels, same binary scoring)
 
 const questions = [
   {
     id: 0,
-    dimLabel: 'CRASH_HANDLER.dll',
-    dimDesc: '当系统遭遇未捕获异常时，调用栈顶部的第一响应函数。此项检测您的默认异常处理策略。注：Ctrl+Z 不在可用选项内。',
-    text: '遇到Bug时，你的第一反应是？',
+    module: 'CRASH_HANDLER.sys',
+    tagline: '异常处理策略扫描 · 用户态回调函数检测',
+    desc: '拦截未捕获异常时，您的调用栈顶部驻留了哪个处理函数？此项检测将扫描 SEH 链并输出您的默认崩溃响应模式。注意：/forcequit 参数已被弃用。',
     options: [
-      { label: '先放着，明天再说', value: 0, dim: 0 },
-      { label: '假装没发生过', value: 0, dim: 0 },
-      { label: '立刻处理，不解决不睡', value: 1, dim: 0 }
+      { label: '延迟回收：标记为"稍后处理"并返回 S_OK', value: 0, dim: 0 },
+      { label: '静默丢弃：捕获后直接吞掉异常，不生成 dump 文件', value: 0, dim: 0 },
+      { label: '立即断点：触发 INT3 并进入内核调试模式', value: 1, dim: 0 },
+      { label: '广播异常：向所有线程发送 EXCEPTION_CONTINUE_SEARCH', value: 1, dim: 0 }
     ]
   },
   {
     id: 1,
-    dimLabel: 'CRASH_HANDLER.dll',
-    dimDesc: '补充扫描：当异常来源为其他进程（人类）时，处理策略是否保持一致？此项用于校验核心 dump 文件的一致性。',
-    text: '有人踩了你的底线，你通常会？',
+    module: 'CRASH_HANDLER.sys',
+    tagline: '跨进程异常校验 · IPC 边界防御检测',
+    desc: '当异常源为外部进程（人类实体）时，您的处理策略是否保持签名一致？此扫描用于检测 IPC 边界上的崩溃传播因子。相关 CVE：CVE-1998-MBTI-OVERFLOW。',
     options: [
-      { label: '沉默，但记在心里', value: 0, dim: 0 },
-      { label: '直接说出来', value: 1, dim: 0 }
+      { label: '写入日志但不报警：记录到内部环形缓冲区', value: 0, dim: 0 },
+      { label: 'PID 隔离：收窄对方进程的访问令牌', value: 0, dim: 0 },
+      { label: '主动发送 RST 包：立即终止 TCP 连接', value: 1, dim: 0 },
+      { label: '广播网络：向所有节点发送 TERM 信号', value: 1, dim: 0 }
     ]
   },
   {
     id: 2,
-    dimLabel: 'KERNEL_CONFLICT.sys',
-    dimDesc: '扫描系统内核中的长期驻留冲突。此冲突通常不被任务管理器显示，但持续占用约 34% 的 CPU 时间。建议不要尝试强行终止——它是系统设计的一部分。',
-    text: '你最大的系统冲突是什么？',
+    module: 'KERNEL_CONFLICT.sys',
+    tagline: '核心态冲突检测 · Ring 0 驻留扫描',
+    desc: '扫描位于内核地址空间的长期驻留冲突。此冲突被标记为 NON_PAGED，无法被任务管理器枚举。已知占用约 34% 的 IRQL 时间。不建议尝试 KeBugCheck——这是系统设计的组成部分。',
     options: [
-      { label: '想太多，做太少', value: 0, dim: 1 },
-      { label: '总觉得格格不入', value: 0, dim: 1 },
-      { label: '缺乏勇气去争取', value: 1, dim: 1 }
+      { label: '预取缓存溢出：已加载的担忧超过物理页帧', value: 0, dim: 1 },
+      { label: 'ABI 不兼容：二进制接口与宿主环境未对齐', value: 0, dim: 1 },
+      { label: '访问权限不足：令牌缺少 SE_DEBUG_PRIVILEGE', value: 1, dim: 1 },
+      { label: '死锁检测触发：两个以上线程争夺同一互斥体', value: 1, dim: 1 }
     ]
   },
   {
     id: 3,
-    dimLabel: 'KERNEL_CONFLICT.sys',
-    dimDesc: '补充扫描：在多线程（社交）环境下，冲突进程的内存占用是否显著升高？此项检测您的线程同步开销。',
-    text: '在人群中，你更常感到？',
+    module: 'KERNEL_CONFLICT.sys',
+    tagline: '多线程环境压力测试 · 上下文切换开销分析',
+    desc: '在进程亲和性被强制设为全核的情况下，测量每次线程上下文切换的 TLB 刷新开销。此项检测用于评估您的社会调度算法是否为 O(n²) 复杂度。',
     options: [
-      { label: '消耗，需要独处充电', value: 0, dim: 1 },
-      { label: '被误解，话到嘴边咽回去', value: 1, dim: 1 }
+      { label: 'CPU 降频：每轮社交后自动进入 C3 睡眠状态', value: 0, dim: 1 },
+      { label: 'L1 缓存未命中：意图数据无法在共享缓存中被找到', value: 1, dim: 1 },
+      { label: 'IRQL 过高：外部中断被屏蔽，无法响应社交信号', value: 1, dim: 1 },
+      { label: '堆栈溢出：递归自省导致调用栈超出已分配内存', value: 0, dim: 1 }
     ]
   },
   {
     id: 4,
-    dimLabel: 'UPDATE_MANAGER.exe',
-    dimDesc: '检测系统自我更新偏好。注意：本扫描仅识别更新方向，不负责判断更新是否成功。部分用户报告更新后反而出现更多 Bug——这是正常的。',
-    text: '如果可以更新自己，你选择？',
+    module: 'UPDATE_MANAGER.exe',
+    tagline: '自我更新向量检测 · 热补丁 vs 冷重启分析',
+    desc: '检测系统在检测到自身版本过旧时采用的更新策略。注意：Windows Update 的历史记录显示，部分补丁安装后反而增加了 Bug 数量。这是预期的——更新本身就是一种破坏性操作。',
     options: [
-      { label: '停止内耗，流畅运行', value: 0, dim: 2 },
-      { label: '扩大舒适区，装更多可能', value: 0, dim: 2 },
-      { label: '换一套人设重新开始', value: 1, dim: 2 }
+      { label: '性能优化：禁用无用服务并整理注册表碎片', value: 0, dim: 2 },
+      { label: '扩展地址空间：从 32-bit 升级到 64-bit 寻址', value: 0, dim: 2 },
+      { label: '主题包替换：无痛切换，桌面图标和注册名同步更新', value: 1, dim: 2 },
+      { label: '全新安装：格式化 C 盘并重新部署所有组件', value: 1, dim: 2 }
     ]
   },
   {
     id: 5,
-    dimLabel: 'BACKGROUND_DAEMON.service',
-    dimDesc: '扫描系统空闲时（睡眠前）自动启动的后台进程。此进程在大多数用户中无法手动关闭，已知运行时长中位数为 1.7 小时。',
-    text: '睡前你的大脑在跑什么进程？',
+    module: 'BACKGROUND_DAEMON.service',
+    tagline: '空闲态后台进程扫描 · 睡眠前自动启动项检测',
+    desc: '扫描系统进入 IDLE 状态前自动拉起的所有后台进程。此服务被标记为 AUTO_START，大多数用户报告无法通过 services.msc 手动停止。已知中位运行时长：1.7 小时。',
     options: [
-      { label: '今天的尴尬回放', value: 0, dim: 3 },
-      { label: '明天的计划预演', value: 1, dim: 3 }
+      { label: '日志重放：从当日事件查看器中提取错误项并循环播放', value: 0, dim: 3 },
+      { label: '快照回溯：反复挂载过去的卷影副本并执行 diff 比较', value: 0, dim: 3 },
+      { label: '预编译执行：在运行时之前将未来计划 JIT 编译为本地代码', value: 1, dim: 3 },
+      { label: '模拟运行：在沙箱中预执行明天的所有可能指令路径', value: 1, dim: 3 }
     ]
   },
   {
     id: 6,
-    dimLabel: 'BACKGROUND_DAEMON.service',
-    dimDesc: '补充扫描：检测长期记忆存储的文件系统完整性。警告：部分用户报告记忆存在静默写入——即在不知情的情况下被修改。这不是 Bug，是特性。',
-    text: '你觉得自己的记忆更接近？',
+    module: 'BACKGROUND_DAEMON.service',
+    tagline: '长期存储完整性校验 · NTFS 日志回滚检测',
+    desc: '扫描长期记忆卷的 NTFS 日志，检测是否存在静默写入——即数据在未被用户感知的情况下被修改。注意：部分用户报告 USN 日志显示元数据被修改但内容未变。这被称为 NTFS_GHOST_WRITE，目前无修复计划。',
     options: [
-      { label: '事实档案，精确但冰冷', value: 0, dim: 3 },
-      { label: '被改写过的故事，模糊但温暖', value: 1, dim: 3 }
+      { label: '只读挂载：记忆卷以只读方式加载，禁止写操作', value: 0, dim: 3 },
+      { label: 'WAL 模式：预写日志确保每次读取都追溯原始事务', value: 0, dim: 3 },
+      { label: '写时复制：每次回忆触发新的分叉，原数据保留但不访问', value: 1, dim: 3 },
+      { label: '索引重建：定期重建 B+ 树以优化叙事查询性能', value: 1, dim: 3 }
     ]
   }
 ]

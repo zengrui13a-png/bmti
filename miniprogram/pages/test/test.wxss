@@ -90,18 +90,26 @@
 
 .question-area { margin-bottom: 28rpx; }
 
-/* Dimension tech-jargon label */
+/* Computer module label */
 .dim-meta {
-  margin-bottom: 12rpx;
+  margin-bottom: 16rpx;
 }
 
-.dim-label {
-  font-size: 17rpx;
+.dim-module {
+  display: block;
+  font-size: 18rpx;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--xp-accent);
+  letter-spacing: 2rpx;
+  margin-bottom: 4rpx;
+}
+
+.dim-tagline {
+  display: block;
+  font-size: 16rpx;
   font-family: var(--font-mono);
   color: var(--xp-text-secondary);
-  background: #EEF2F6;
-  padding: 4rpx 12rpx;
-  border-radius: 4rpx;
   letter-spacing: 1rpx;
 }
 
