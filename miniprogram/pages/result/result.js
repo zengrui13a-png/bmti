@@ -12,9 +12,8 @@ function formatTime(date) {
   return `${y}-${m}-${d} ${h}:${min}:${s}`
 }
 
-function genBgStyle(rgbti) {
-  var R = rgbti.R, G = rgbti.G, B = rgbti.B, T = rgbti.T
-  return 'radial-gradient(ellipse 60% 50% at 40% 35%, rgba(' + R + ',' + G + ',' + B + ',' + T.toFixed(2) + ') 0%, transparent 70%), radial-gradient(ellipse 80% 60% at 50% 50%, rgba(' + R + ',' + G + ',' + B + ',' + (T * 0.4).toFixed(2) + ') 0%, transparent 60%), conic-gradient(from 0deg at 50% 50%, rgba(255,255,255,0.06) 0deg, transparent 3deg, rgba(255,255,255,0.06) 6deg, transparent 9deg, rgba(255,255,255,0.06) 12deg, transparent 15deg, rgba(255,255,255,0.06) 18deg, transparent 21deg, rgba(255,255,255,0.06) 24deg, transparent 27deg, rgba(255,255,255,0.06) 30deg, transparent 33deg, rgba(255,255,255,0.06) 36deg, transparent 39deg, rgba(255,255,255,0.06) 42deg, transparent 45deg, rgba(255,255,255,0.06) 48deg, transparent 51deg, rgba(255,255,255,0.06) 54deg, transparent 57deg, rgba(255,255,255,0.06) 60deg, transparent 63deg, rgba(255,255,255,0.06) 66deg, transparent 69deg, rgba(255,255,255,0.06) 72deg, transparent 75deg, rgba(255,255,255,0.06) 78deg, transparent 81deg, rgba(255,255,255,0.06) 84deg, transparent 87deg, rgba(255,255,255,0.06) 90deg, transparent 93deg, rgba(255,255,255,0.06) 96deg, transparent 99deg)'
+function genBgColor(rgbti) {
+  return 'rgba(' + rgbti.R + ',' + rgbti.G + ',' + rgbti.B + ',' + rgbti.T.toFixed(2) + ')'
 }
 
 Page({
@@ -23,7 +22,7 @@ Page({
     rgbti: null,
     shareText: '',
     currentTime: '',
-    bgStyle: '',
+    bgColor: '',
     colorMode: false
   },
 
@@ -40,7 +39,7 @@ Page({
       rgbti: rgbti,
       shareText: '我的出厂设置是「' + result.name + '」\n颜色: rgba(' + rgbti.R + ',' + rgbti.G + ',' + rgbti.B + ',' + rgbti.T.toFixed(2) + ')\n\n' + result.diagnosis + '\n\n测测你的Bug →',
       currentTime: formatTime(new Date()),
-      bgStyle: '',
+      bgColor: '',
       colorMode: false
     })
   },
@@ -49,7 +48,7 @@ Page({
     var colorMode = !this.data.colorMode
     this.setData({
       colorMode: colorMode,
-      bgStyle: colorMode ? genBgStyle(this.data.rgbti) : ''
+      bgColor: colorMode ? genBgColor(this.data.rgbti) : ''
     })
   },
 

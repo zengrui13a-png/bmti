@@ -1,6 +1,9 @@
 <view class="xp-desktop {{colorMode ? 'color-mode' : ''}}" wx:if="{{result}}">
   <!-- RGBTI color background overlay (only visible in color mode) -->
-  <view class="color-bg-overlay" wx:if="{{colorMode}}" style="background-image: {{bgStyle}}"></view>
+  <view class="color-bg-overlay" wx:if="{{colorMode}}" style="background-color: {{bgColor}}">
+    <view class="bg-glow"></view>
+    <view class="bg-rays"></view>
+  </view>
 
   <view class="xp-window {{colorMode ? 'xp-window-glass' : ''}}">
     <view class="xp-titlebar">
