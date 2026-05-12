@@ -1,50 +1,58 @@
-<view class="xp-desktop">
-  <view class="xp-window">
-    <view class="xp-titlebar">
-      <text class="xp-title-icon">🔧</text>
-      <text class="xp-title-text">系统诊断中...</text>
-      <view class="xp-title-btns">
-        <view class="xp-btn-min">_</view>
-        <view class="xp-btn-max">□</view>
-        <view class="xp-btn-close">×</view>
+<view class="sketch-desk">
+  <view class="sketch-window">
+    <view class="corner-tick ct-tl"></view>
+    <view class="corner-tick ct-tr"></view>
+    <view class="corner-tick ct-bl"></view>
+    <view class="corner-tick ct-br"></view>
+
+    <view class="sketch-titlebar">
+      <text class="stb-text">系统诊断中...</text>
+      <view class="stb-btns">
+        <view class="stb-btn">_</view>
+        <view class="stb-btn">□</view>
+        <view class="stb-btn stb-close">×</view>
       </view>
     </view>
-    <view class="xp-body">
-      <view class="scan-header">
-        <text class="scan-label">系统诊断 · 模块 {{currentIndex + 1}}/{{totalQuestions}}</text>
-        <text class="scan-pct">{{progress}}%</text>
+
+    <view class="sketch-body">
+      <!-- Progress -->
+      <view class="prog-header">
+        <text class="prog-label">扫描扇区 {{currentIndex + 1}}/{{totalQuestions}}</text>
+        <text class="prog-pct">{{progress}}%</text>
       </view>
-      <view class="progress-track">
-        <view class="progress-fill" style="width: {{progress}}%"></view>
+      <view class="prog-track">
+        <view class="prog-hatch" style="width: {{progress}}%"></view>
       </view>
 
-      <view class="question-area" wx:if="{{question}}">
-        <view class="dim-meta">
-          <text class="dim-module">{{question.module}}</text>
-          <text class="dim-tagline">{{question.tagline}}</text>
-        </view>
-        <text class="q-text">{{question.text}}</text>
-        <text class="dim-desc">{{question.desc}}</text>
+      <!-- Module header -->
+      <view class="module-header" wx:if="{{question}}">
+        <text class="module-file">{{question.module}}</text>
+        <text class="module-desc">{{question.desc}}</text>
       </view>
 
-      <view class="options-list">
+      <!-- Question -->
+      <text class="q-text" wx:if="{{question}}">{{question.text}}</text>
+
+      <!-- Options -->
+      <view class="opts">
         <view
-          class="opt-item {{selectedIndex === index ? 'opt-selected' : ''}}"
+          class="opt-card {{selectedIndex === index ? 'opt-picked' : ''}}"
           wx:for="{{question.options}}"
           wx:key="index"
           data-index="{{index}}"
           bindtap="onSelectOption"
         >
-          <view class="opt-radio">{{selectedIndex === index ? '●' : '○'}}</view>
-          <view class="opt-content">
+          <view class="opt-marker">{{selectedIndex === index ? '●' : '○'}}</view>
+          <view class="opt-body">
             <text class="opt-label">{{item.label}}</text>
             <text class="opt-hint">{{item.hint}}</text>
           </view>
         </view>
       </view>
 
+      <!-- Button -->
       <button
-        class="xp-btn-primary {{selectedIndex < 0 ? 'btn-disabled' : ''}}"
+        class="sketch-btn {{selectedIndex >= 0 ? 'sketch-btn-ok' : ''}}"
         bindtap="onNextStep"
         disabled="{{selectedIndex < 0}}"
       >
