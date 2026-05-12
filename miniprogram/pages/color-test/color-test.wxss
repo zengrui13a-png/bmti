@@ -5,7 +5,10 @@
   background: #0D1117;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   padding: 36rpx 28rpx;
+  padding-bottom: 100rpx;
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
@@ -35,6 +38,7 @@
 /* === WINDOW === */
 .os-window {
   width: 640rpx;
+  max-height: 75vh;
   background: #161B22;
   border: 1px solid #30363D;
   border-radius: 10rpx 10rpx 0 0;
@@ -44,8 +48,6 @@
     0 0 60rpx rgba(47,113,216,0.06);
   position: relative;
   z-index: 1;
-  flex: 1;
-  max-height: 80vh;
   display: flex;
   flex-direction: column;
 }

@@ -8,18 +8,18 @@ function genRgba(cv) {
 
 function genBgGradients(cv) {
   var R = cv.R, G = cv.G, B = cv.B, T = cv.T
-  // Warm companion: shift R up, G down a bit
-  var R2 = Math.min(255, R + 60), G2 = Math.max(0, G - 30), B2 = Math.max(0, B - 40)
-  // Cool companion: shift B up, R down
-  var R3 = Math.max(0, R - 40), G3 = Math.min(255, G + 20), B3 = Math.min(255, B + 50)
-  // Complementary negative for accent depth
-  var R4 = 255 - R, G4 = 255 - G, B4 = 255 - B
+  // Layer 1: Dominant — full opacity at center, fading to edge
+  // Layer 2: Warm companion — shifts hue slightly toward red/gold
+  // Layer 3: Cool companion — shifts toward blue/violet
+  // Layer 4: High-contrast edge accent
 
-  return {
-    g1: 'radial-gradient(ellipse 55% 50% at 35% 30%, ' + genRgba(cv) + ' 0%, rgba(' + R2 + ',' + G2 + ',' + B2 + ',' + (T * 0.6).toFixed(2) + ') 40%, rgba(' + R + ',' + G + ',' + B + ',0) 80%)',
-    g2: 'radial-gradient(ellipse 45% 40% at 65% 60%, rgba(' + R3 + ',' + G3 + ',' + B3 + ',' + (T * 0.7).toFixed(2) + ') 0%, transparent 70%)',
-    g3: 'radial-gradient(circle 35% at 75% 25%, rgba(' + R4 + ',' + G4 + ',' + B4 + ',0.18) 0%, transparent 100%), radial-gradient(circle 25% at 20% 75%, rgba(' + R + ',' + G + ',' + B + ',0.25) 0%, transparent 100%)'
-  }
+  var g1 = 'radial-gradient(ellipse 60% 55% at 40% 35%, ' + genRgba(cv) + ' 0%, rgba(' + Math.min(255, R + 50) + ',' + Math.max(0, G - 20) + ',' + Math.max(0, B - 30) + ',' + (T * 0.7).toFixed(2) + ') 35%, rgba(' + R + ',' + G + ',' + B + ',0) 75%)'
+
+  var g2 = 'radial-gradient(ellipse 50% 45% at 65% 60%, rgba(' + Math.max(0, R - 30) + ',' + Math.min(255, G + 30) + ',' + Math.min(255, B + 60) + ',' + (T * 0.6).toFixed(2) + ') 0%, transparent 65%)'
+
+  var g3 = 'radial-gradient(circle 40% at 80% 20%, rgba(' + (255 - R) + ',' + (255 - G) + ',' + (255 - B) + ',0.12) 0%, transparent 100%), radial-gradient(circle 20% at 15% 80%, rgba(' + R + ',' + G + ',' + B + ',0.30) 0%, transparent 100%), radial-gradient(ellipse 30% 30% at 50% 50%, ' + genRgba(cv) + ' 0%, transparent 100%)'
+
+  return { g1: g1, g2: g2, g3: g3 }
 }
 
 Page({

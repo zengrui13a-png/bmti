@@ -22,30 +22,30 @@
   pointer-events: none;
 }
 
-/* Gradient Layer 1: Dominant glow from upper-left — highest opacity */
+/* Gradient Layer 1: Dominant — user's primary spectral color */
 .bg-gradient-1 {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  opacity: 0.95;
+  opacity: 1.0;
   z-index: 1;
 }
 
-/* Gradient Layer 2: Cool secondary from lower-right */
+/* Gradient Layer 2: Secondary blend — shifts hue toward complement */
 .bg-gradient-2 {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  opacity: 0.8;
+  opacity: 0.85;
   z-index: 2;
 }
 
-/* Gradient Layer 3: Complementary accent */
+/* Gradient Layer 3: Multi-point accents — adds depth and complexity */
 .bg-gradient-3 {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  opacity: 0.5;
+  opacity: 0.65;
   z-index: 3;
 }
 
