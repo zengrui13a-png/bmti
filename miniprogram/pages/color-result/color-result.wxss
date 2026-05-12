@@ -1,8 +1,8 @@
-/* === CYBERPUNK RESULT SCREEN === */
+/* === CYBERPUNK RESULT — ANIMATED === */
 
 .cyber-screen {
   min-height: 100vh;
-  background: #0A0A0A;
+  background: #06060A;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,9 +10,10 @@
   padding: 40rpx 32rpx;
   box-sizing: border-box;
   position: relative;
+  overflow: hidden;
 }
 
-/* === THREE-LAYER BACKGROUND === */
+/* === ANIMATED BACKGROUND === */
 .color-bg-overlay {
   position: fixed;
   top: 0;
@@ -25,97 +26,166 @@
 
 .bg-color-fill {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.70;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  opacity: 0.55;
 }
 
-.bg-glow {
+/* Pulsing glow — breaths in/out */
+.bg-glow-pulse {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(ellipse 55% 45% at 38% 32%, rgba(255,255,255,0.35) 0%, transparent 60%);
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  opacity: 0.3;
+  background: radial-gradient(ellipse 50% 40% at 40% 30%, currentColor 0%, transparent 65%);
+  animation: glowBreathe 4s ease-in-out infinite;
 }
 
-.bg-rays {
+@keyframes glowBreathe {
+  0%, 100% { opacity: 0.20; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(1.08); }
+}
+
+/* Rotating rays */
+.bg-rays-rotate {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.5;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  opacity: 0.4;
   background: conic-gradient(
     from 0deg at 50% 50%,
-    rgba(255,255,255,0.03) 0deg, transparent 2deg,
-    rgba(255,255,255,0.03) 4deg, transparent 6deg,
-    rgba(255,255,255,0.03) 8deg, transparent 10deg,
-    rgba(255,255,255,0.03) 12deg, transparent 14deg,
-    rgba(255,255,255,0.03) 16deg, transparent 18deg,
-    rgba(255,255,255,0.03) 20deg, transparent 22deg,
-    rgba(255,255,255,0.03) 24deg, transparent 26deg,
-    rgba(255,255,255,0.03) 28deg, transparent 30deg,
-    rgba(255,255,255,0.03) 32deg, transparent 34deg,
-    rgba(255,255,255,0.03) 36deg, transparent 38deg,
-    rgba(255,255,255,0.03) 40deg, transparent 42deg,
-    rgba(255,255,255,0.03) 44deg, transparent 46deg,
-    rgba(255,255,255,0.03) 48deg, transparent 50deg,
-    rgba(255,255,255,0.03) 52deg, transparent 54deg,
-    rgba(255,255,255,0.03) 56deg, transparent 58deg,
-    rgba(255,255,255,0.03) 60deg, transparent 62deg,
-    rgba(255,255,255,0.03) 64deg, transparent 66deg,
-    rgba(255,255,255,0.03) 68deg, transparent 70deg,
-    rgba(255,255,255,0.03) 72deg, transparent 74deg,
-    rgba(255,255,255,0.03) 76deg, transparent 78deg,
-    rgba(255,255,255,0.03) 80deg, transparent 82deg,
-    rgba(255,255,255,0.03) 84deg, transparent 86deg,
-    rgba(255,255,255,0.03) 88deg, transparent 90deg
+    rgba(255,255,255,0.025) 0deg, transparent 2deg,
+    rgba(255,255,255,0.025) 4deg, transparent 6deg,
+    rgba(255,255,255,0.025) 8deg, transparent 10deg,
+    rgba(255,255,255,0.025) 12deg, transparent 14deg,
+    rgba(255,255,255,0.025) 16deg, transparent 18deg,
+    rgba(255,255,255,0.025) 20deg, transparent 22deg,
+    rgba(255,255,255,0.025) 24deg, transparent 26deg,
+    rgba(255,255,255,0.025) 28deg, transparent 30deg,
+    rgba(255,255,255,0.025) 32deg, transparent 34deg,
+    rgba(255,255,255,0.025) 36deg, transparent 38deg,
+    rgba(255,255,255,0.025) 40deg, transparent 42deg,
+    rgba(255,255,255,0.025) 44deg, transparent 46deg,
+    rgba(255,255,255,0.025) 48deg, transparent 50deg,
+    rgba(255,255,255,0.025) 52deg, transparent 54deg,
+    rgba(255,255,255,0.025) 56deg, transparent 58deg,
+    rgba(255,255,255,0.025) 60deg, transparent 62deg,
+    rgba(255,255,255,0.025) 64deg, transparent 66deg,
+    rgba(255,255,255,0.025) 68deg, transparent 70deg,
+    rgba(255,255,255,0.025) 72deg, transparent 74deg,
+    rgba(255,255,255,0.025) 76deg, transparent 78deg,
+    rgba(255,255,255,0.025) 80deg, transparent 82deg,
+    rgba(255,255,255,0.025) 84deg, transparent 86deg,
+    rgba(255,255,255,0.025) 88deg, transparent 90deg
   );
+  animation: raysSpin 60s linear infinite;
 }
 
-/* === MAIN CARD === */
+@keyframes raysSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* === FLOATING PARTICLES === */
+.particles {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4rpx; height: 4rpx;
+  background: rgba(255,255,255,0.6);
+  border-radius: 50%;
+  animation: floatUp 6s ease-in infinite;
+}
+
+.p1 { left: 15%; animation-duration: 7s; animation-delay: 0s; }
+.p2 { left: 35%; animation-duration: 5s; animation-delay: 1.5s; width: 3rpx; height: 3rpx; }
+.p3 { left: 60%; animation-duration: 8s; animation-delay: 3s; }
+.p4 { left: 78%; animation-duration: 6s; animation-delay: 2s; width: 2rpx; height: 2rpx; }
+.p5 { left: 88%; animation-duration: 7s; animation-delay: 4s; width: 5rpx; height: 5rpx; }
+
+@keyframes floatUp {
+  0% { bottom: -10%; opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.3; }
+  100% { bottom: 110%; opacity: 0; }
+}
+
+/* === CARD === */
 .cyber-card {
   width: 640rpx;
-  background: rgba(13,17,23,0.85);
-  border: 2rpx solid rgba(255,255,255,0.12);
+  background: rgba(10,12,18,0.88);
+  border: 2rpx solid rgba(255,255,255,0.08);
   position: relative;
   z-index: 1;
   overflow: hidden;
-  padding: 0;
+  backdrop-filter: blur(12rpx);
+}
+
+/* Border glow ring — pulses with the bg color */
+.card-border-glow {
+  position: absolute;
+  top: -4rpx; left: -4rpx;
+  right: -4rpx; bottom: -4rpx;
+  border: 2rpx solid rgba(255,255,255,0.3);
+  z-index: 0;
+  pointer-events: none;
+  animation: borderPulse 3s ease-in-out infinite;
+}
+
+@keyframes borderPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
 }
 
 /* Corner accents */
 .card-corner {
   position: absolute;
-  width: 32rpx;
-  height: 32rpx;
-  z-index: 2;
+  width: 36rpx; height: 36rpx;
+  z-index: 3;
   pointer-events: none;
 }
-.card-corner-tl { top: 0; left: 0; border-top: 4rpx solid rgba(255,255,255,0.5); border-left: 4rpx solid rgba(255,255,255,0.5); }
-.card-corner-tr { top: 0; right: 0; border-top: 4rpx solid rgba(255,255,255,0.5); border-right: 4rpx solid rgba(255,255,255,0.5); }
-.card-corner-bl { bottom: 0; left: 0; border-bottom: 4rpx solid rgba(255,255,255,0.5); border-left: 4rpx solid rgba(255,255,255,0.5); }
-.card-corner-br { bottom: 0; right: 0; border-bottom: 4rpx solid rgba(255,255,255,0.5); border-right: 4rpx solid rgba(255,255,255,0.5); }
+.card-corner-tl { top: 0; left: 0; border-top: 4rpx solid rgba(255,255,255,0.55); border-left: 4rpx solid rgba(255,255,255,0.55); }
+.card-corner-tr { top: 0; right: 0; border-top: 4rpx solid rgba(255,255,255,0.55); border-right: 4rpx solid rgba(255,255,255,0.55); }
+.card-corner-bl { bottom: 0; left: 0; border-bottom: 4rpx solid rgba(255,255,255,0.55); border-left: 4rpx solid rgba(255,255,255,0.55); }
+.card-corner-br { bottom: 0; right: 0; border-bottom: 4rpx solid rgba(255,255,255,0.55); border-right: 4rpx solid rgba(255,255,255,0.55); }
 
-/* Scanline overlay */
-.scanline {
+/* Static scanline texture */
+.scanline-static {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   background: repeating-linear-gradient(
     0deg,
     transparent,
     transparent 4rpx,
-    rgba(255,255,255,0.015) 4rpx,
-    rgba(255,255,255,0.015) 8rpx
+    rgba(255,255,255,0.012) 4rpx,
+    rgba(255,255,255,0.012) 8rpx
   );
-  z-index: 1;
+  z-index: 2;
   pointer-events: none;
+}
+
+/* Sweeping scan beam */
+.scanline-sweep {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 6rpx;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15) 30%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0.15) 70%, transparent);
+  z-index: 4;
+  pointer-events: none;
+  animation: scanSweep 3s linear infinite;
+}
+
+@keyframes scanSweep {
+  0% { top: -2%; }
+  100% { top: 102%; }
 }
 
 /* === CARD CONTENT === */
@@ -127,10 +197,10 @@
 
 .cyber-label {
   display: block;
-  font-size: 20rpx;
+  font-size: 18rpx;
   font-family: var(--font-mono);
-  color: rgba(255,255,255,0.5);
-  letter-spacing: 6rpx;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 8rpx;
   text-align: center;
   margin-bottom: 20rpx;
 }
@@ -142,17 +212,22 @@
 }
 
 .divider-dot {
-  width: 8rpx;
-  height: 8rpx;
-  background: rgba(255,255,255,0.4);
+  width: 8rpx; height: 8rpx;
+  background: rgba(255,255,255,0.35);
   border-radius: 50%;
   flex-shrink: 0;
+  animation: dotFlicker 2s ease-in-out infinite;
+}
+
+@keyframes dotFlicker {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
 }
 
 .divider-line {
   flex: 1;
   height: 1rpx;
-  background: linear-gradient(90deg, rgba(255,255,255,0.3), transparent 50%, rgba(255,255,255,0.3));
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
 }
 
 .card-body {
@@ -163,17 +238,15 @@
 
 .cyber-tag {
   display: block;
-  font-size: 18rpx;
+  font-size: 17rpx;
   font-family: var(--font-mono);
-  color: rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.30);
   letter-spacing: 4rpx;
   margin-bottom: 10rpx;
 }
 
 /* Model name */
-.model-section {
-  margin-bottom: 28rpx;
-}
+.model-section { margin-bottom: 28rpx; }
 
 .model-name {
   font-size: 44rpx;
@@ -184,30 +257,38 @@
 }
 
 /* Spectrum bar */
-.spectrum-section {
-  margin-bottom: 28rpx;
-}
+.spectrum-section { margin-bottom: 28rpx; }
 
 .spectrum-bar {
   display: flex;
-  height: 12rpx;
-  border-radius: 6rpx;
+  height: 14rpx;
+  border-radius: 7rpx;
   overflow: hidden;
   margin-bottom: 8rpx;
-  border: 1rpx solid rgba(255,255,255,0.1);
+  border: 1rpx solid rgba(255,255,255,0.08);
+}
+
+.spec-segment {
+  animation: specShimmer 2s ease-in-out infinite;
+}
+
+.spec-segment:nth-child(2) { animation-delay: 0.3s; }
+.spec-segment:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes specShimmer {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.4); }
 }
 
 .rgba-value {
   font-size: 22rpx;
   font-family: var(--font-mono);
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.55);
   letter-spacing: 2rpx;
 }
 
 /* Diagnosis */
-.diagnosis-section {
-  margin-bottom: 24rpx;
-}
+.diagnosis-section { margin-bottom: 24rpx; }
 
 .diagnosis-text {
   font-size: var(--font-size-sm);
@@ -217,13 +298,11 @@
 }
 
 /* Note */
-.note-section {
-  margin-bottom: 24rpx;
-}
+.note-section { margin-bottom: 24rpx; }
 
 .note-text {
   font-size: var(--font-size-sm);
-  color: rgba(255,255,255,0.55);
+  color: rgba(255,255,255,0.5);
   font-style: italic;
   line-height: 1.6;
 }
@@ -233,19 +312,19 @@
   display: flex;
   justify-content: space-between;
   padding-top: 16rpx;
-  border-top: 1rpx solid rgba(255,255,255,0.08);
+  border-top: 1rpx solid rgba(255,255,255,0.06);
 }
 
 .footer-hash {
   font-size: var(--font-size-xs);
   font-family: var(--font-mono);
-  color: rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.20);
 }
 
 .footer-id {
   font-size: var(--font-size-xs);
   font-family: var(--font-mono);
-  color: rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.20);
 }
 
 /* === ACTION BUTTONS === */
@@ -263,8 +342,8 @@
 .cyber-btn-share {
   width: 100%;
   padding: 26rpx 0;
-  background: transparent;
-  border: 2rpx solid rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.04);
+  border: 2rpx solid rgba(255,255,255,0.25);
   font-size: 28rpx;
   font-family: var(--font-mono);
   font-weight: 600;
@@ -276,21 +355,16 @@
 }
 
 .cyber-btn-share:active {
-  background: rgba(255,255,255,0.08);
-  border-color: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.5);
 }
 
-.btn-text {
-  position: relative;
-  z-index: 1;
-}
-
-.xp-btn-toggle {
+.cyber-retake {
   background: transparent;
   border: none;
   padding: 8rpx 0;
   font-size: var(--font-size-xs);
   font-family: var(--font-mono);
-  color: rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.30);
   letter-spacing: 2rpx;
 }

@@ -2,7 +2,7 @@
 
   <view class="xp-window">
     <view class="xp-titlebar">
-      <text class="xp-title-icon">{{colorMode ? '🎨' : '📋'}}</text>
+      <text class="xp-title-icon">📋</text>
       <text class="xp-title-text">诊断报告</text>
       <view class="xp-title-btns">
         <view class="xp-btn-min">_</view>
@@ -21,15 +21,6 @@
         <view class="report-section">
           <text class="section-tag">型号</text>
           <text class="model-name" style="color: {{result.color}}">{{result.name}}</text>
-        </view>
-
-        <view class="report-section">
-          <text class="section-tag">色号</text>
-          <view class="color-code-row">
-            <view class="mini-swatch" style="background: rgba({{rgbti.R}},{{rgbti.G}},{{rgbti.B}},{{rgbti.T}})"></view>
-            <text class="color-code">rgba({{rgbti.R}}, {{rgbti.G}}, {{rgbti.B}}, {{rgbti.T}})</text>
-          </view>
-          <text class="color-note">{{rgbti.note}}</text>
         </view>
 
         <view class="report-divider"></view>
