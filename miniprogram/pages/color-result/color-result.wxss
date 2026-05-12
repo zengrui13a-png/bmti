@@ -1,8 +1,8 @@
-/* === CYBERPUNK RESULT — ANIMATED === */
+/* === CYBERPUNK RESULT — DYNAMIC COLOR BACKGROUND === */
 
 .cyber-screen {
   min-height: 100vh;
-  background: #06060A;
+  background: transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,70 +13,90 @@
   overflow: hidden;
 }
 
-/* === ANIMATED BACKGROUND === */
+/* === MULTI-LAYER DYNAMIC BACKGROUND === */
 .color-bg-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   z-index: 0;
   pointer-events: none;
 }
 
-.bg-color-fill {
+/* Gradient Layer 1: Dominant glow from upper-left — highest opacity */
+.bg-gradient-1 {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  opacity: 0.55;
+  opacity: 0.95;
+  z-index: 1;
 }
 
-/* Pulsing glow — breaths in/out */
+/* Gradient Layer 2: Cool secondary from lower-right */
+.bg-gradient-2 {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  opacity: 0.8;
+  z-index: 2;
+}
+
+/* Gradient Layer 3: Complementary accent */
+.bg-gradient-3 {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  opacity: 0.5;
+  z-index: 3;
+}
+
+/* Pulsing glow overlay */
 .bg-glow-pulse {
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  opacity: 0.3;
-  background: radial-gradient(ellipse 50% 40% at 40% 30%, currentColor 0%, transparent 65%);
+  opacity: 0.25;
+  z-index: 4;
+  background: radial-gradient(ellipse 50% 40% at 40% 30%, rgba(255,255,255,0.5) 0%, transparent 65%);
   animation: glowBreathe 4s ease-in-out infinite;
 }
 
 @keyframes glowBreathe {
-  0%, 100% { opacity: 0.20; transform: scale(1); }
-  50% { opacity: 0.45; transform: scale(1.08); }
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50% { opacity: 0.40; transform: scale(1.06); }
 }
 
-/* Rotating rays */
+/* Rotating ray texture */
 .bg-rays-rotate {
   position: absolute;
   top: -50%; left: -50%;
   width: 200%; height: 200%;
-  opacity: 0.4;
+  opacity: 0.35;
+  z-index: 5;
   background: conic-gradient(
     from 0deg at 50% 50%,
-    rgba(255,255,255,0.025) 0deg, transparent 2deg,
-    rgba(255,255,255,0.025) 4deg, transparent 6deg,
-    rgba(255,255,255,0.025) 8deg, transparent 10deg,
-    rgba(255,255,255,0.025) 12deg, transparent 14deg,
-    rgba(255,255,255,0.025) 16deg, transparent 18deg,
-    rgba(255,255,255,0.025) 20deg, transparent 22deg,
-    rgba(255,255,255,0.025) 24deg, transparent 26deg,
-    rgba(255,255,255,0.025) 28deg, transparent 30deg,
-    rgba(255,255,255,0.025) 32deg, transparent 34deg,
-    rgba(255,255,255,0.025) 36deg, transparent 38deg,
-    rgba(255,255,255,0.025) 40deg, transparent 42deg,
-    rgba(255,255,255,0.025) 44deg, transparent 46deg,
-    rgba(255,255,255,0.025) 48deg, transparent 50deg,
-    rgba(255,255,255,0.025) 52deg, transparent 54deg,
-    rgba(255,255,255,0.025) 56deg, transparent 58deg,
-    rgba(255,255,255,0.025) 60deg, transparent 62deg,
-    rgba(255,255,255,0.025) 64deg, transparent 66deg,
-    rgba(255,255,255,0.025) 68deg, transparent 70deg,
-    rgba(255,255,255,0.025) 72deg, transparent 74deg,
-    rgba(255,255,255,0.025) 76deg, transparent 78deg,
-    rgba(255,255,255,0.025) 80deg, transparent 82deg,
-    rgba(255,255,255,0.025) 84deg, transparent 86deg,
-    rgba(255,255,255,0.025) 88deg, transparent 90deg
+    rgba(255,255,255,0.03) 0deg, transparent 2deg,
+    rgba(255,255,255,0.03) 4deg, transparent 6deg,
+    rgba(255,255,255,0.03) 8deg, transparent 10deg,
+    rgba(255,255,255,0.03) 12deg, transparent 14deg,
+    rgba(255,255,255,0.03) 16deg, transparent 18deg,
+    rgba(255,255,255,0.03) 20deg, transparent 22deg,
+    rgba(255,255,255,0.03) 24deg, transparent 26deg,
+    rgba(255,255,255,0.03) 28deg, transparent 30deg,
+    rgba(255,255,255,0.03) 32deg, transparent 34deg,
+    rgba(255,255,255,0.03) 36deg, transparent 38deg,
+    rgba(255,255,255,0.03) 40deg, transparent 42deg,
+    rgba(255,255,255,0.03) 44deg, transparent 46deg,
+    rgba(255,255,255,0.03) 48deg, transparent 50deg,
+    rgba(255,255,255,0.03) 52deg, transparent 54deg,
+    rgba(255,255,255,0.03) 56deg, transparent 58deg,
+    rgba(255,255,255,0.03) 60deg, transparent 62deg,
+    rgba(255,255,255,0.03) 64deg, transparent 66deg,
+    rgba(255,255,255,0.03) 68deg, transparent 70deg,
+    rgba(255,255,255,0.03) 72deg, transparent 74deg,
+    rgba(255,255,255,0.03) 76deg, transparent 78deg,
+    rgba(255,255,255,0.03) 80deg, transparent 82deg,
+    rgba(255,255,255,0.03) 84deg, transparent 86deg,
+    rgba(255,255,255,0.03) 88deg, transparent 90deg
   );
   animation: raysSpin 60s linear infinite;
 }

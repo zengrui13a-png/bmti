@@ -7,20 +7,17 @@ function genRgba(cv) {
 
 function genBgGradients(cv) {
   var R = cv.R, G = cv.G, B = cv.B, T = cv.T
-  // Warm-shifted companion
-  var R2 = Math.min(255, R + 40), G2 = Math.max(0, G - 25), B2 = Math.max(0, B - 50)
-  // Cool-shifted companion
-  var R3 = Math.max(0, R - 50), G3 = G, B3 = Math.min(255, B + 30)
-  // High-contrast edge accent
+  // Warm companion: shift R up, G down a bit
+  var R2 = Math.min(255, R + 60), G2 = Math.max(0, G - 30), B2 = Math.max(0, B - 40)
+  // Cool companion: shift B up, R down
+  var R3 = Math.max(0, R - 40), G3 = Math.min(255, G + 20), B3 = Math.min(255, B + 50)
+  // Complementary negative for accent depth
   var R4 = 255 - R, G4 = 255 - G, B4 = 255 - B
 
   return {
-    // Layer 1: Dominant glow from upper-left
-    g1: 'radial-gradient(ellipse 55% 45% at 35% 30%, ' + genRgba(cv) + ' 0%, rgba(' + R2 + ',' + G2 + ',' + B2 + ',' + (T * 0.5).toFixed(2) + ') 50%, transparent 75%)',
-    // Layer 2: Cool secondary from lower-right
-    g2: 'radial-gradient(ellipse 50% 40% at 70% 65%, rgba(' + R3 + ',' + G3 + ',' + B3 + ',' + (T * 0.6).toFixed(2) + ') 0%, transparent 65%)',
-    // Layer 3: Subtle negative accent
-    g3: 'radial-gradient(circle 30% at 80% 20%, rgba(' + R4 + ',' + G4 + ',' + B4 + ',0.08) 0%, transparent 100%)'
+    g1: 'radial-gradient(ellipse 55% 50% at 35% 30%, ' + genRgba(cv) + ' 0%, rgba(' + R2 + ',' + G2 + ',' + B2 + ',' + (T * 0.6).toFixed(2) + ') 40%, rgba(' + R + ',' + G + ',' + B + ',0) 80%)',
+    g2: 'radial-gradient(ellipse 45% 40% at 65% 60%, rgba(' + R3 + ',' + G3 + ',' + B3 + ',' + (T * 0.7).toFixed(2) + ') 0%, transparent 70%)',
+    g3: 'radial-gradient(circle 35% at 75% 25%, rgba(' + R4 + ',' + G4 + ',' + B4 + ',0.18) 0%, transparent 100%), radial-gradient(circle 25% at 20% 75%, rgba(' + R + ',' + G + ',' + B + ',0.25) 0%, transparent 100%)'
   }
 }
 
