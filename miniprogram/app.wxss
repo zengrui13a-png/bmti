@@ -1,17 +1,17 @@
 page {
-  --bg-primary: #000000;
-  --bg-secondary: #1a1a1a;
-  --text-primary: #ffffff;
-  --text-secondary: #888888;
-  --accent-green: #00ff41;
-  --accent-pink: #ff69b4;
-  --accent-red: #ff3333;
-  --accent-blue: #00d4ff;
+  --bsod-blue: #0000AA;
+  --win-gray: #C0C0C0;
+  --win-title-blue: #000080;
+  --win-white: #FFFFFF;
+  --win-black: #000000;
+  --win-shadow: #808080;
+  --win-dark-shadow: #404040;
+  --win-highlight: #DFDFDF;
   --font-mono: 'Courier New', monospace;
-  --font-sans: -apple-system, 'Helvetica Neue', sans-serif;
+  --font-sans: 'SimSun', 'MS Sans Serif', sans-serif;
 
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: var(--font-sans);
+  background-color: var(--bsod-blue);
+  color: var(--win-white);
+  font-family: var(--font-mono);
   min-height: 100vh;
 }
