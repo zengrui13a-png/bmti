@@ -1,5 +1,4 @@
 <view class="cyber-screen" wx:if="{{result}}">
-  <!-- MULTI-GRADIENT BACKGROUND -->
   <view class="color-bg-overlay">
     <view class="bg-gradient-1" style="background-image: {{gradients.g1}}"></view>
     <view class="bg-gradient-2" style="background-image: {{gradients.g2}}"></view>
@@ -8,7 +7,6 @@
     <view class="bg-rays-rotate"></view>
   </view>
 
-  <!-- FLOATING PARTICLES -->
   <view class="particles">
     <view class="particle p1"></view>
     <view class="particle p2"></view>
@@ -30,8 +28,9 @@
     <view class="scanline-static"></view>
     <view class="scanline-sweep"></view>
 
+    <!-- Header -->
     <view class="card-header">
-      <text class="cyber-label">◇ SPECTRAL DIAGNOSTIC REPORT ◇</text>
+      <text class="cyber-label">>>> SYSTEM ANALYSIS COMPLETE</text>
       <view class="cyber-divider">
         <view class="divider-dot"></view>
         <view class="divider-line"></view>
@@ -40,44 +39,57 @@
     </view>
 
     <view class="card-body">
-      <view class="model-section">
-        <text class="cyber-tag">// MODEL_ID</text>
-        <text class="model-name" style="color: {{result.color}}; text-shadow: 0 0 20rpx {{result.color}}, 0 0 40rpx {{result.color}};">{{result.name}}</text>
-      </view>
-
-      <view class="spectrum-section">
-        <text class="cyber-tag">// RGBA_SPECTRUM</text>
-        <view class="spectrum-bar">
-          <view class="spec-segment spec-r" style="background: rgba({{cvR}},0,0,0.6); flex: 1;"></view>
-          <view class="spec-segment spec-g" style="background: rgba(0,{{cvG}},0,0.6); flex: 1;"></view>
-          <view class="spec-segment spec-b" style="background: rgba(0,0,{{cvB}},0.6); flex: 1;"></view>
-          <view class="spec-segment" style="background: {{bgColor}}; flex: 2;"></view>
+      <!-- Model + Spectrum at top -->
+      <view class="identity-block">
+        <text class="identity-model" style="color: {{result.color}}; text-shadow: 0 0 20rpx {{result.color}}, 0 0 40rpx {{result.color}};">{{result.name}}</text>
+        <view class="spectrum-mini">
+          <view class="spec-seg" style="background: rgba({{cvR}},0,0,0.7); flex: 1;"></view>
+          <view class="spec-seg" style="background: rgba(0,{{cvG}},0,0.7); flex: 1;"></view>
+          <view class="spec-seg" style="background: rgba(0,0,{{cvB}},0.7); flex: 1;"></view>
+          <view class="spec-seg" style="background: {{bgColor}}; flex: 2;"></view>
         </view>
-        <text class="rgba-value">{{rgba}}</text>
+        <text class="identity-rgba">{{rgba}}</text>
       </view>
 
-      <view class="diagnosis-section">
-        <text class="cyber-tag">// DIAGNOSIS</text>
-        <text class="diagnosis-text">{{result.diagnosis}}</text>
+      <!-- Divider -->
+      <view class="section-divider">
+        <view class="sd-line"></view>
+        <text class="sd-tag">核心发现</text>
+        <view class="sd-line"></view>
       </view>
 
-      <view class="note-section">
-        <text class="cyber-tag">// CHROMATIC_INSIGHT</text>
-        <text class="note-text">{{note}}</text>
+      <!-- Paradox -->
+      <text class="analysis-paradox">{{analysis.paradox}}</text>
+
+      <!-- Divider -->
+      <view class="section-divider">
+        <view class="sd-line"></view>
+        <text class="sd-tag">光谱分析</text>
+        <view class="sd-line"></view>
       </view>
 
-      <view class="card-footer">
-        <text class="footer-hash">0x{{result.color.replace('#','')}}</text>
-        <text class="footer-id">BMTI-RGBTI_v2.0</text>
+      <!-- Analysis body -->
+      <text class="analysis-body">{{analysis.analysis}}</text>
+
+      <!-- Closing block -->
+      <view class="closing-block">
+        <view class="closing-diamond">◆</view>
+        <text class="closing-text">{{analysis.closing}}</text>
       </view>
+    </view>
+
+    <!-- Footer -->
+    <view class="card-footer">
+      <text class="footer-hash">0x{{result.color.replace('#','')}}</text>
+      <text class="footer-id">BMTI-RGBTI_v2.0</text>
     </view>
   </view>
 
+  <!-- Actions -->
   <view class="action-row">
     <button class="cyber-btn-share" open-type="share">
       <text class="btn-text">▸ 传输光谱报告</text>
     </button>
-
     <view class="cyber-retake" bindtap="onRetake">
       <text>⟲ 重新扫描</text>
     </view>

@@ -1,4 +1,5 @@
 const results = require('../../data/results')
+const analysisData = require('../../data/analysis')
 const app = getApp()
 
 function genRgba(cv) {
@@ -28,7 +29,8 @@ Page({
     bgColor: '',
     gradients: null,
     note: '',
-    cvR: 0, cvG: 0, cvB: 0, cvT: 0
+    cvR: 0, cvG: 0, cvB: 0, cvT: 0,
+    analysis: null
   },
 
   onLoad() {
@@ -43,6 +45,18 @@ Page({
     var result = results[typeIndex]
     var rgba = genRgba(cv)
     var grads = genBgGradients(cv)
+    var analysis = analysisData[typeIndex]
+
+    // Color profile string for sharing
+    var colorProfile = [
+      cv.R >= 200 ? '暖调' : '冷调',
+      cv.G >= 180 ? '高精度渲染' : cv.G >= 120 ? '平衡渲染' : '低精度渲染',
+      cv.B >= 180 ? '硬边缘' : cv.B >= 120 ? '柔边缘' : '无边',
+      cv.T >= 0.7 ? '高度透明' : cv.T >= 0.4 ? '半透明' : '不透明'
+    ].join(' · ')
+
+    // Simplified note from the analysis
+    var note = analysis.closing
 
     var noteMap = {
       '80,60,210,0.18': '冷寂的暗流——你的光谱在红外边缘低语。',
@@ -142,7 +156,9 @@ Page({
       cvR: cv.R,
       cvG: cv.G,
       cvB: cv.B,
-      cvT: cv.T
+      cvT: cv.T,
+      analysis: analysis,
+      colorProfile: colorProfile
     })
   },
 
