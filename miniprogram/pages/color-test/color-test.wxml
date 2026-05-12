@@ -1,94 +1,59 @@
-<view class="os-screen" wx:if="{{question}}">
-  <!-- Desktop background -->
-  <view class="os-desktop-bg"></view>
+<view class="neon-desk" wx:if="{{question}}">
+  <view class="neon-window">
+    <view class="corner-tick ct-tl"></view>
+    <view class="corner-tick ct-tr"></view>
+    <view class="corner-tick ct-bl"></view>
+    <view class="corner-tick ct-br"></view>
 
-  <!-- Calibration Window -->
-  <view class="os-window">
-    <!-- Title bar -->
-    <view class="os-titlebar">
-      <view class="os-title-left">
-        <text class="os-title-icon">🖥</text>
-        <text class="os-title-text">显示校准向导</text>
-      </view>
-      <view class="os-title-btns">
-        <view class="os-btn-min">_</view>
-        <view class="os-btn-max">□</view>
-        <view class="os-btn-close">×</view>
+    <view class="neon-titlebar">
+      <text class="ntb-text">🖥 显示校准向导</text>
+      <view class="ntb-btns">
+        <view class="ntb-dot"></view>
+        <view class="ntb-dot"></view>
+        <view class="ntb-dot ntb-active"></view>
       </view>
     </view>
 
-    <!-- Menu bar -->
-    <view class="os-menubar">
-      <text class="os-menu">文件</text>
-      <text class="os-menu">编辑</text>
-      <text class="os-menu">查看</text>
-      <text class="os-menu" style="font-weight:700;">色彩校准</text>
-      <text class="os-menu">帮助</text>
-    </view>
+    <view class="neon-body">
+      <!-- Channel badge -->
+      <view class="nchan-badge">
+        <text class="nchan-code">{{question.channelName}}</text>
+        <text class="nchan-step">{{currentIndex + 1}}/{{totalQuestions}}</text>
+      </view>
 
-    <!-- Toolbar -->
-    <view class="os-toolbar">
-      <text class="os-tb-label">📋 系统诊断结果: {{resultName}}</text>
-      <view class="os-tb-divider"></view>
-      <text class="os-tb-label">🎨 正在校准: {{question.channel}}</text>
-    </view>
-
-    <!-- Body -->
-    <view class="os-body">
       <!-- Progress -->
-      <view class="calib-progress">
-        <text class="calib-label">校准进度 {{currentIndex + 1}}/{{totalQuestions}}</text>
-        <view class="calib-track">
-          <view class="calib-fill" style="width: {{(currentIndex + 1) / totalQuestions * 100}}%"></view>
-        </view>
+      <view class="nprog-track">
+        <view class="nprog-fill" style="width: {{(currentIndex + 1) / totalQuestions * 100}}%"></view>
       </view>
 
-      <!-- Content area -->
-      <view class="calib-content">
-        <view class="calib-header">
-          <text class="calib-module">{{question.channelName}}</text>
-          <text class="calib-tagline">{{question.tagline}}</text>
-        </view>
+      <!-- Question -->
+      <text class="nq-text">{{question.text}}</text>
 
-        <text class="calib-question">{{question.text}}</text>
-
-        <!-- Options as display calibration presets -->
-        <view class="calib-options">
-          <view
-            class="calib-opt {{selectedIndex === index ? 'calib-opt-sel' : ''}}"
-            wx:for="{{question.options}}"
-            wx:key="index"
-            data-index="{{index}}"
-            bindtap="onSelectOption"
-          >
-            <view class="calib-opt-radio">
-              <view class="calib-radio-dot" wx:if="{{selectedIndex === index}}"></view>
-            </view>
-            <view class="calib-opt-text">
-              <text class="calib-opt-name">{{item.label}}</text>
-              <text class="calib-opt-desc">{{item.desc}}</text>
-            </view>
+      <!-- Options -->
+      <view class="nopts">
+        <view
+          class="nopt {{selectedIndex === index ? 'nopt-sel' : ''}}"
+          wx:for="{{question.options}}"
+          wx:key="index"
+          data-index="{{index}}"
+          bindtap="onSelectOption"
+        >
+          <view class="nopt-marker">{{selectedIndex === index ? '◆' : '◇'}}</view>
+          <view class="nopt-body">
+            <text class="nopt-label">{{item.label}}</text>
+            <text class="nopt-desc">{{item.desc}}</text>
           </view>
         </view>
       </view>
-    </view>
 
-    <!-- Footer buttons -->
-    <view class="os-footer">
-      <button class="os-btn os-btn-next {{selectedIndex >= 0 ? 'os-btn-active' : ''}}"
-        bindtap="onNextStep" disabled="{{selectedIndex < 0}}">
-        {{currentIndex + 1 >= totalQuestions ? '完成校准 →' : '下一步 →'}}
+      <!-- Button -->
+      <button
+        class="neon-btn {{selectedIndex >= 0 ? 'neon-btn-ok' : ''}}"
+        bindtap="onNextStep"
+        disabled="{{selectedIndex < 0}}"
+      >
+        {{currentIndex + 1 >= totalQuestions ? '▸ 生成光谱报告' : '▸ 确认采样'}}
       </button>
-    </view>
-  </view>
-
-  <!-- Taskbar -->
-  <view class="os-taskbar">
-    <view class="os-taskbar-item os-taskbar-active">
-      <text>🖥 显示校准向导</text>
-    </view>
-    <view class="os-taskbar-item">
-      <text>📋 BMTI 诊断报告</text>
     </view>
   </view>
 </view>
