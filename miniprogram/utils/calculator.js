@@ -18,4 +18,9 @@ function calculateType(answers) {
   return d0 * 8 + d1 * 4 + d2 * 2 + d3 * 1
 }
 
-module.exports = { calculateType }
+function calcRGBTI(typeIndex, results) {
+  const r = results[typeIndex]
+  return { R: r.r, G: r.g, B: r.b, T: r.t, note: r.colorNote }
+}
+
+module.exports = { calculateType, calcRGBTI }

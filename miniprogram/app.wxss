@@ -1,17 +1,34 @@
 page {
-  --bsod-blue: #0000AA;
-  --win-gray: #C0C0C0;
-  --win-title-blue: #000080;
-  --win-white: #FFFFFF;
-  --win-black: #000000;
-  --win-shadow: #808080;
-  --win-dark-shadow: #404040;
-  --win-highlight: #DFDFDF;
+  --xp-bg: #ECE9D8;
+  --xp-white: #FFFFFF;
+  --xp-title-start: #2F71D8;
+  --xp-title-end: #5BA0F2;
+  --xp-title-text: #FFFFFF;
+  --xp-body: #FFFFFF;
+  --xp-border: #7F9DB9;
+  --xp-shadow: #ACA899;
+  --xp-text: #1E1E1E;
+  --xp-text-secondary: #6E6E6E;
+  --xp-accent: #2F71D8;
+  --xp-warn: #E8920D;
+  --xp-error: #D42828;
+  --xp-ok: #3C8D3C;
+  --color-pink: #D4568A;
+  --color-red: #C84040;
+  --color-blue: #3898B0;
+  --color-green: #38A84C;
   --font-mono: 'Courier New', monospace;
-  --font-sans: 'SimSun', 'MS Sans Serif', sans-serif;
+  --font-sans: 'Tahoma', 'Segoe UI', 'Microsoft YaHei', sans-serif;
+  --font-size-xs: 18rpx;
+  --font-size-sm: 22rpx;
+  --font-size-md: 28rpx;
+  --font-size-lg: 36rpx;
+  --font-size-xl: 48rpx;
+  --radius-sm: 6rpx;
+  --radius-md: 10rpx;
 
-  background-color: var(--bsod-blue);
-  color: var(--win-white);
-  font-family: var(--font-mono);
+  background-color: var(--xp-bg);
+  color: var(--xp-text);
+  font-family: var(--font-sans);
   min-height: 100vh;
 }
