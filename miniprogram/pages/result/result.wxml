@@ -1,56 +1,60 @@
-<view class="xp-desktop" wx:if="{{result}}">
+<view class="sketch-desk" wx:if="{{result}}">
+  <view class="sketch-window">
+    <view class="corner-tick ct-tl"></view>
+    <view class="corner-tick ct-tr"></view>
+    <view class="corner-tick ct-bl"></view>
+    <view class="corner-tick ct-br"></view>
 
-  <view class="xp-window">
-    <view class="xp-titlebar">
-      <text class="xp-title-icon">📋</text>
-      <text class="xp-title-text">诊断报告</text>
-      <view class="xp-title-btns">
-        <view class="xp-btn-min">_</view>
-        <view class="xp-btn-max">□</view>
-        <view class="xp-btn-close">×</view>
+    <view class="sketch-titlebar">
+      <text class="stb-text">📋 诊断报告</text>
+      <view class="stb-btns">
+        <view class="stb-btn">_</view>
+        <view class="stb-btn">□</view>
+        <view class="stb-btn stb-close">×</view>
       </view>
     </view>
 
-    <view class="xp-body">
-      <view class="report-card {{colorMode ? 'card-glass' : ''}}">
-        <view class="report-header">
-          <text class="report-label">BMTI 系统诊断报告 v1.0</text>
-          <view class="report-divider"></view>
+    <view class="sketch-body">
+      <!-- Report card -->
+      <view class="report-sketch">
+        <view class="rs-header">
+          <text class="rs-label">BMTI 系统诊断报告 v1.0</text>
+          <view class="rs-divider"></view>
         </view>
 
-        <view class="report-section">
-          <text class="section-tag">型号</text>
-          <text class="model-name" style="color: {{result.color}}">{{result.name}}</text>
+        <view class="rs-section">
+          <text class="rs-tag">// 型号识别</text>
+          <text class="rs-model" style="color: var(--bsod-blue)">{{result.name}}</text>
         </view>
 
-        <view class="report-divider"></view>
+        <view class="rs-divider"></view>
 
-        <view class="report-section">
-          <text class="section-tag">诊断</text>
-          <text class="diagnosis-text">{{result.diagnosis}}</text>
+        <view class="rs-section">
+          <text class="rs-tag">// 系统诊断</text>
+          <text class="rs-text">{{result.diagnosis}}</text>
         </view>
 
-        <view class="report-section">
-          <text class="section-tag">Bug</text>
-          <text class="tagline-text">{{result.tagline}}</text>
+        <view class="rs-section">
+          <text class="rs-tag">// 已知Bug</text>
+          <text class="rs-text rs-italic">{{result.tagline}}</text>
         </view>
 
-        <view class="report-footer">
-          <text class="footer-code">Diagnostic Code: 0x0000{{result.id < 10 ? '0' : ''}}{{result.id}}</text>
-          <text class="footer-time">{{currentTime}}</text>
+        <view class="rs-footer">
+          <text class="rs-code">Diagnostic Code: 0x0000{{result.id < 10 ? '0' : ''}}{{result.id}}</text>
+          <text class="rs-time">{{currentTime}}</text>
         </view>
       </view>
 
-      <button class="xp-btn-primary" bindtap="onOpenColorMode">
+      <!-- Primary CTA -->
+      <button class="sketch-btn sketch-btn-primary" bindtap="onOpenColorMode">
         🖥 显示校准 · 生成专属光谱
       </button>
 
-      <view class="secondary-actions">
-        <button class="xp-btn-secondary" open-type="share">
-          发送给懂你Bug的人
-        </button>
+      <!-- Secondary -->
+      <view class="sec-row">
+        <button class="sketch-btn-sec" open-type="share">发送给懂你Bug的人</button>
         <view class="retake-link" bindtap="onRetake">
-          <text class="retake-text">重新扫描</text>
+          <text class="retake-txt">重新扫描</text>
         </view>
       </view>
     </view>
