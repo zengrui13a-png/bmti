@@ -8,16 +8,24 @@ function genRgba(cv) {
 
 function genBgGradients(cv) {
   var R = cv.R, G = cv.G, B = cv.B, T = cv.T
-  // Layer 1: Dominant — full opacity at center, fading to edge
-  // Layer 2: Warm companion — shifts hue slightly toward red/gold
-  // Layer 3: Cool companion — shifts toward blue/violet
-  // Layer 4: High-contrast edge accent
+  // Amplify saturation: push the dominant color harder
+  var satBoost = 1.4
+  var Rs = Math.min(255, Math.round(R * satBoost))
+  var Gs = Math.min(255, Math.round(G * satBoost))
+  var Bs = Math.min(255, Math.round(B * satBoost))
 
-  var g1 = 'radial-gradient(ellipse 60% 55% at 40% 35%, ' + genRgba(cv) + ' 0%, rgba(' + Math.min(255, R + 50) + ',' + Math.max(0, G - 20) + ',' + Math.max(0, B - 30) + ',' + (T * 0.7).toFixed(2) + ') 35%, rgba(' + R + ',' + G + ',' + B + ',0) 75%)'
+  // Warm-shifted companion (more gold/orange)
+  var Rw = Math.min(255, Rs + 70), Gw = Math.max(0, Gs - 30), Bw = Math.max(0, Bs - 60)
+  // Cool-shifted companion (more violet/cyan)
+  var Rc = Math.max(0, Rs - 60), Gc = Gs, Bc = Math.min(255, Bs + 80)
+  // Inverted accent
+  var Ri = 255 - R, Gi = 255 - G, Bi = 255 - B
 
-  var g2 = 'radial-gradient(ellipse 50% 45% at 65% 60%, rgba(' + Math.max(0, R - 30) + ',' + Math.min(255, G + 30) + ',' + Math.min(255, B + 60) + ',' + (T * 0.6).toFixed(2) + ') 0%, transparent 65%)'
+  var g1 = 'radial-gradient(ellipse 60% 55% at 35% 30%, rgba(' + Rs + ',' + Gs + ',' + Bs + ',0.9) 0%, rgba(' + Rw + ',' + Gw + ',' + Bw + ',' + (T * 0.8).toFixed(2) + ') 30%, rgba(' + Rs + ',' + Gs + ',' + Bs + ',0.4) 60%, rgba(' + Rc + ',' + Gc + ',' + Bc + ',0.15) 85%)'
 
-  var g3 = 'radial-gradient(circle 40% at 80% 20%, rgba(' + (255 - R) + ',' + (255 - G) + ',' + (255 - B) + ',0.12) 0%, transparent 100%), radial-gradient(circle 20% at 15% 80%, rgba(' + R + ',' + G + ',' + B + ',0.30) 0%, transparent 100%), radial-gradient(ellipse 30% 30% at 50% 50%, ' + genRgba(cv) + ' 0%, transparent 100%)'
+  var g2 = 'radial-gradient(ellipse 50% 45% at 70% 65%, rgba(' + Rc + ',' + Gc + ',' + Bc + ',' + (T * 0.9).toFixed(2) + ') 0%, rgba(' + Rc + ',' + Gc + ',' + Bc + ',0) 70%)'
+
+  var g3 = 'radial-gradient(circle 35% at 80% 15%, rgba(' + Ri + ',' + Gi + ',' + Bi + ',0.22) 0%, transparent 100%), radial-gradient(circle 22% at 15% 75%, rgba(' + Rs + ',' + Gs + ',' + Bs + ',0.50) 0%, transparent 100%), radial-gradient(ellipse 35% 35% at 50% 45%, rgba(' + Rs + ',' + Gs + ',' + Bs + ',0.35) 0%, transparent 100%)'
 
   return { g1: g1, g2: g2, g3: g3 }
 }
