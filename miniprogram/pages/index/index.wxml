@@ -1,35 +1,48 @@
-<view class="xp-desktop">
-  <view class="xp-window">
-    <view class="xp-titlebar">
-      <text class="xp-title-icon">⚡</text>
-      <text class="xp-title-text">Bug人格 - BMTI诊断工具 v1.0</text>
-      <view class="xp-title-btns">
-        <view class="xp-btn-min">_</view>
-        <view class="xp-btn-max">□</view>
-        <view class="xp-btn-close">×</view>
+<view class="sketch-desk">
+  <view class="sketch-window">
+    <!-- Corner tick marks -->
+    <view class="corner-tick ct-tl"></view>
+    <view class="corner-tick ct-tr"></view>
+    <view class="corner-tick ct-bl"></view>
+    <view class="corner-tick ct-br"></view>
+
+    <!-- Title bar -->
+    <view class="sketch-titlebar">
+      <text class="stb-text">Bug人格 - BMTI诊断工具 v1.0</text>
+      <view class="stb-btns">
+        <view class="stb-btn">_</view>
+        <view class="stb-btn">□</view>
+        <view class="stb-btn stb-close">×</view>
       </view>
     </view>
-    <view class="xp-body">
-      <view class="xp-hero">
-        <text class="xp-logo">BUG人格</text>
-        <text class="xp-tagline">不是定义你是谁。是诊断你怎么卡住的。</text>
-      </view>
-      <view class="xp-info-panel">
-        <view class="xp-info-row">
-          <text class="xp-info-icon">📋</text>
-          <text class="xp-info-text">7 项系统诊断</text>
-        </view>
-        <view class="xp-info-row">
-          <text class="xp-info-icon">🔍</text>
-          <text class="xp-info-text">16 种 Bug 模式识别</text>
-        </view>
-        <view class="xp-info-row">
-          <text class="xp-info-icon">🔒</text>
-          <text class="xp-info-text">本地诊断 · 不上传数据</text>
-        </view>
-      </view>
-      <button class="xp-btn-primary" bindtap="onStartTest">开始诊断</button>
-      <text class="xp-hint">按 Enter 或点击按钮启动扫描</text>
+
+    <!-- BSOD block -->
+    <view class="bsod-sketch">
+      <text class="bsod-title">BUG人格</text>
+      <text class="bsod-sub">Bug Management Type Indicator</text>
+      <text class="bsod-line">不是定义你是谁。</text>
+      <text class="bsod-line bsod-accent">是诊断你怎么卡住的。</text>
     </view>
+
+    <!-- Info lines -->
+    <view class="sketch-info">
+      <view class="si-row">
+        <text class="si-bullet">○</text>
+        <text class="si-text">7 项系统诊断扫描</text>
+      </view>
+      <view class="si-row">
+        <text class="si-bullet">○</text>
+        <text class="si-text">16 种 Bug 模式识别</text>
+      </view>
+      <view class="si-row">
+        <text class="si-bullet">○</text>
+        <text class="si-text">本地诊断 · 不上传数据</text>
+      </view>
+    </view>
+
+    <!-- Start button -->
+    <button class="sketch-btn" bindtap="onStartTest">
+      <text class="sketch-btn-text">开始诊断</text>
+    </button>
   </view>
 </view>
