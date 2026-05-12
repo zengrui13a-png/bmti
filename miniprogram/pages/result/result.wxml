@@ -1,70 +1,70 @@
-<view class="bsod-screen" wx:if="{{result}}">
-  <view class="win-dialog">
-    <view class="win-titlebar">
-      <text class="win-title-text">诊断报告</text>
-      <view class="win-title-btns">
-        <view class="win-title-btn">_</view>
-        <view class="win-title-btn">□</view>
-        <view class="win-title-btn">×</view>
+<view class="xp-desktop {{colorMode ? 'color-mode' : ''}}" wx:if="{{result}}">
+  <!-- RGBTI color background overlay (only visible in color mode) -->
+  <view class="color-bg-overlay" wx:if="{{colorMode}}" style="background-image: {{bgStyle}}"></view>
+
+  <view class="xp-window {{colorMode ? 'xp-window-glass' : ''}}">
+    <view class="xp-titlebar">
+      <text class="xp-title-icon">{{colorMode ? '🎨' : '📋'}}</text>
+      <text class="xp-title-text">诊断报告</text>
+      <view class="xp-title-btns">
+        <view class="xp-btn-min">_</view>
+        <view class="xp-btn-max">□</view>
+        <view class="xp-btn-close">×</view>
       </view>
     </view>
 
-    <view class="win-body">
-      <view class="report-card">
-        <!-- Header -->
+    <view class="xp-body">
+      <view class="report-card {{colorMode ? 'card-glass' : ''}}">
         <view class="report-header">
-          <text class="report-title">BMTI 系统诊断报告 v1.0</text>
+          <text class="report-label">BMTI 系统诊断报告 v1.0</text>
           <view class="report-divider"></view>
         </view>
 
-        <!-- Model Identification -->
         <view class="report-section">
-          <text class="section-prompt">></text>
-          <text class="section-label">型号识别</text>
-        </view>
-        <text class="model-name" style="color: {{result.color}}">{{result.name}}</text>
-        <view class="color-swatch">
-          <view class="swatch-block" style="background: {{result.color}}"></view>
-          <text class="swatch-hex">色号: {{result.color}}</text>
+          <text class="section-tag">型号</text>
+          <text class="model-name" style="color: {{result.color}}">{{result.name}}</text>
         </view>
 
-        <!-- System Diagnosis -->
         <view class="report-section">
-          <text class="section-prompt">></text>
-          <text class="section-label">系统诊断</text>
+          <text class="section-tag">色号</text>
+          <view class="color-code-row">
+            <view class="mini-swatch" style="background: rgba({{rgbti.R}},{{rgbti.G}},{{rgbti.B}},{{rgbti.T}})"></view>
+            <text class="color-code">rgba({{rgbti.R}}, {{rgbti.G}}, {{rgbti.B}}, {{rgbti.T}})</text>
+          </view>
+          <text class="color-note" wx:if="{{colorMode}}">{{rgbti.note}}</text>
         </view>
-        <text class="diagnosis-text">{{result.diagnosis}}</text>
 
-        <!-- Known Bug -->
-        <view class="report-section">
-          <text class="section-prompt">></text>
-          <text class="section-label">已知Bug</text>
-        </view>
-        <text class="tagline-text">{{result.tagline}}</text>
-
-        <!-- Report Footer -->
         <view class="report-divider"></view>
+
+        <view class="report-section">
+          <text class="section-tag">诊断</text>
+          <text class="diagnosis-text">{{result.diagnosis}}</text>
+        </view>
+
+        <view class="report-section">
+          <text class="section-tag">Bug</text>
+          <text class="tagline-text">{{result.tagline}}</text>
+        </view>
+
         <view class="report-footer">
-          <text class="footer-code">Diagnostic Code: 0x0000{{result.id < 16 ? '0' : ''}}{{result.id}}</text>
-          <text class="footer-time">Scan completed at: {{currentTime}}</text>
+          <text class="footer-code">Diagnostic Code: 0x0000{{result.id < 10 ? '0' : ''}}{{result.id}}</text>
+          <text class="footer-time">{{currentTime}}</text>
         </view>
       </view>
 
-      <!-- Share Button -->
-      <view class="win-btn-wrap">
-        <button class="win-btn win-btn-primary" open-type="share">
-          发送给懂你Bug的人 (Alt+S)
+      <button class="xp-btn-primary" open-type="share">
+        发送给懂你Bug的人
+      </button>
+
+      <view class="toggle-row">
+        <button class="xp-btn-toggle" bindtap="onToggleColorMode">
+          {{colorMode ? '◉ 切回标准报告' : '◉ 开启色卡模式'}}
         </button>
       </view>
 
-      <!-- Retake -->
       <view class="retake-link" bindtap="onRetake">
-        <text class="retake-text">[ 重新扫描 (F5) ]</text>
+        <text class="retake-text">重新扫描</text>
       </view>
     </view>
-  </view>
-
-  <view class="bsod-footer">
-    <text class="bsod-text">Report generated. Press Alt+S to share diagnostic results.</text>
   </view>
 </view>
