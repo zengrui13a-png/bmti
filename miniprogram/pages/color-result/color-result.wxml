@@ -1,96 +1,65 @@
-<view class="cyber-screen" wx:if="{{result}}">
-  <view class="color-bg-overlay">
-    <view class="bg-gradient-1" style="background-image: {{gradients.g1}}"></view>
-    <view class="bg-gradient-2" style="background-image: {{gradients.g2}}"></view>
-    <view class="bg-gradient-3" style="background-image: {{gradients.g3}}"></view>
-    <view class="bg-glow-pulse" style="background-color: {{bgColor}}"></view>
-    <view class="bg-rays-rotate"></view>
+<view class="neon-desk" wx:if="{{result}}">
+  <!-- Dynamic color background overlay -->
+  <view class="neon-bg-overlay">
+    <view class="nbg-gradient-1" style="background-image: {{gradients.g1}}"></view>
+    <view class="nbg-gradient-2" style="background-image: {{gradients.g2}}"></view>
+    <view class="nbg-gradient-3" style="background-image: {{gradients.g3}}"></view>
   </view>
 
-  <view class="particles">
-    <view class="particle p1"></view>
-    <view class="particle p2"></view>
-    <view class="particle p3"></view>
-    <view class="particle p4"></view>
-    <view class="particle p5"></view>
-    <view class="particle p6"></view>
-    <view class="particle p7"></view>
-  </view>
+  <!-- Main card -->
+  <view class="neon-report">
+    <view class="corner-tick ct-tl"></view>
+    <view class="corner-tick ct-tr"></view>
+    <view class="corner-tick ct-bl"></view>
+    <view class="corner-tick ct-br"></view>
 
-  <!-- MAIN CARD -->
-  <view class="cyber-card">
-    <view class="card-border-glow"></view>
-    <view class="card-corner card-corner-tl"></view>
-    <view class="card-corner card-corner-tr"></view>
-    <view class="card-corner card-corner-bl"></view>
-    <view class="card-corner card-corner-br"></view>
-
-    <view class="scanline-static"></view>
-    <view class="scanline-sweep"></view>
-
-    <!-- Header -->
-    <view class="card-header">
-      <text class="cyber-label">>>> SYSTEM ANALYSIS COMPLETE</text>
-      <view class="cyber-divider">
-        <view class="divider-dot"></view>
-        <view class="divider-line"></view>
-        <view class="divider-dot"></view>
-      </view>
+    <view class="nr-header">
+      <text class="nr-label">>>> SYSTEM ANALYSIS COMPLETE</text>
+      <view class="nr-divider"></view>
     </view>
 
-    <view class="card-body">
-      <!-- Model + Spectrum at top -->
-      <view class="identity-block">
-        <text class="identity-model" style="color: {{result.color}}; text-shadow: 0 0 20rpx {{result.color}}, 0 0 40rpx {{result.color}};">{{result.name}}</text>
-        <view class="spectrum-mini">
-          <view class="spec-seg" style="background: rgba({{cvR}},0,0,0.7); flex: 1;"></view>
-          <view class="spec-seg" style="background: rgba(0,{{cvG}},0,0.7); flex: 1;"></view>
-          <view class="spec-seg" style="background: rgba(0,0,{{cvB}},0.7); flex: 1;"></view>
-          <view class="spec-seg" style="background: {{bgColor}}; flex: 2;"></view>
+    <view class="nr-body">
+      <!-- Identity -->
+      <view class="nr-id">
+        <text class="nr-model" style="color: var(--bsod-blue)">{{result.name}}</text>
+        <view class="nr-spectrum">
+          <view class="ns-seg ns-r" style="background: rgba({{cvR}},0,0,0.7); flex: 1;"></view>
+          <view class="ns-seg ns-g" style="background: rgba(0,{{cvG}},0,0.7); flex: 1;"></view>
+          <view class="ns-seg ns-b" style="background: rgba(0,0,{{cvB}},0.7); flex: 1;"></view>
+          <view class="ns-seg ns-t" style="background: {{bgColor}}; flex: 2;"></view>
         </view>
-        <text class="identity-rgba">{{rgba}}</text>
+        <text class="nr-rgba">{{rgba}}</text>
       </view>
 
-      <!-- Divider -->
-      <view class="section-divider">
-        <view class="sd-line"></view>
-        <text class="sd-tag">核心发现</text>
-        <view class="sd-line"></view>
-      </view>
+      <view class="nr-divider"></view>
 
       <!-- Paradox -->
-      <text class="analysis-paradox">{{analysis.paradox}}</text>
+      <view class="nr-section-label">核心发现</view>
+      <text class="nr-paradox">{{analysis.paradox}}</text>
 
-      <!-- Divider -->
-      <view class="section-divider">
-        <view class="sd-line"></view>
-        <text class="sd-tag">光谱分析</text>
-        <view class="sd-line"></view>
-      </view>
+      <!-- Analysis -->
+      <view class="nr-section-label">光谱分析</view>
+      <text class="nr-body-text">{{analysis.analysis}}</text>
 
-      <!-- Analysis body -->
-      <text class="analysis-body">{{analysis.analysis}}</text>
-
-      <!-- Closing block -->
-      <view class="closing-block">
-        <view class="closing-diamond">◆</view>
-        <text class="closing-text">{{analysis.closing}}</text>
+      <!-- Closing -->
+      <view class="nr-closing">
+        <view class="nrc-marker">◆</view>
+        <text class="nrc-text">{{analysis.closing}}</text>
       </view>
     </view>
 
-    <!-- Footer -->
-    <view class="card-footer">
-      <text class="footer-hash">0x{{result.color.replace('#','')}}</text>
-      <text class="footer-id">BMTI-RGBTI_v2.0</text>
+    <view class="nr-footer">
+      <text class="nrf-code">0x{{result.color.replace('#','')}}</text>
+      <text class="nrf-id">BMTI-RGBTI_v2.0</text>
     </view>
   </view>
 
   <!-- Actions -->
-  <view class="action-row">
-    <button class="cyber-btn-share" open-type="share">
-      <text class="btn-text">▸ 传输光谱报告</text>
+  <view class="neon-actions">
+    <button class="neon-btn-share" open-type="share">
+      ▸ 传输光谱报告
     </button>
-    <view class="cyber-retake" bindtap="onRetake">
+    <view class="neon-retake" bindtap="onRetake">
       <text>⟲ 重新扫描</text>
     </view>
   </view>
