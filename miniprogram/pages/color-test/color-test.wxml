@@ -1,54 +1,62 @@
-<view class="xp-desktop">
-  <view class="xp-window">
-    <view class="xp-titlebar">
-      <text class="xp-title-icon">🎨</text>
-      <text class="xp-title-text">光谱校准</text>
-      <view class="xp-title-btns">
-        <view class="xp-btn-min">_</view>
-        <view class="xp-btn-max">□</view>
-        <view class="xp-btn-close">×</view>
+<view class="cyber-screen" wx:if="{{question}}">
+  <view class="cyber-bg-overlay">
+    <view class="cyber-bg-dots"></view>
+    <view class="cyber-bg-gradient"></view>
+  </view>
+
+  <view class="cyber-panel">
+    <view class="cyber-panel-header">
+      <text class="cyber-panel-label">SPECTRAL CALIBRATION</text>
+      <view class="cyber-panel-divider">
+        <view class="cp-dot"></view>
+        <view class="cp-line"></view>
+        <view class="cp-dot"></view>
       </view>
     </view>
-    <view class="xp-body">
-      <view class="scan-header">
-        <text class="scan-label">色彩采样 {{currentIndex + 1}}/{{totalQuestions}}</text>
-        <text class="channel-tag">{{question.channel}}</text>
-      </view>
-      <view class="progress-track">
-        <view class="progress-fill" style="width: {{(currentIndex + 1) / totalQuestions * 100}}%"></view>
-      </view>
 
-      <view class="question-area" wx:if="{{question}}">
-        <view class="dim-meta">
-          <text class="dim-module">{{question.channelName}}</text>
-          <text class="dim-tagline">{{question.tagline}}</text>
+    <view class="cyber-panel-body">
+      <!-- Channel badge + progress -->
+      <view class="channel-header">
+        <view class="channel-badge">
+          <text class="channel-code">{{question.channelName}}</text>
         </view>
-        <text class="q-text">{{question.text}}</text>
+        <text class="channel-step">{{currentIndex + 1}} / {{totalQuestions}}</text>
       </view>
 
-      <view class="options-list">
+      <view class="cyber-progress">
+        <view class="cyber-progress-fill" style="width: {{(currentIndex + 1) / totalQuestions * 100}}%"></view>
+      </view>
+
+      <!-- Question -->
+      <text class="cyber-question">{{question.text}}</text>
+
+      <!-- Options -->
+      <view class="cyber-options">
         <view
-          class="opt-item {{selectedIndex === index ? 'opt-selected' : ''}}"
+          class="cyber-opt {{selectedIndex === index ? 'cyber-opt-active' : ''}}"
           wx:for="{{question.options}}"
           wx:key="index"
           data-index="{{index}}"
           bindtap="onSelectOption"
         >
-          <view class="opt-radio">{{selectedIndex === index ? '●' : '○'}}</view>
-          <view class="opt-content">
-            <text class="opt-label">{{item.label}}</text>
-            <text class="opt-desc">{{item.desc}}</text>
+          <view class="cyber-opt-marker">{{selectedIndex === index ? '◆' : '◇'}}</view>
+          <view class="cyber-opt-body">
+            <text class="cyber-opt-label">{{item.label}}</text>
+            <text class="cyber-opt-desc">{{item.desc}}</text>
           </view>
         </view>
       </view>
 
-      <button
-        class="xp-btn-primary {{selectedIndex < 0 ? 'btn-disabled' : ''}}"
-        bindtap="onNextStep"
-        disabled="{{selectedIndex < 0}}"
-      >
-        {{currentIndex + 1 >= totalQuestions ? '生成光谱' : '继续采样'}}
-      </button>
+      <!-- Button -->
+      <view class="cyber-btn-wrap">
+        <button
+          class="cyber-btn {{selectedIndex >= 0 ? 'cyber-btn-ready' : ''}}"
+          bindtap="onNextStep"
+          disabled="{{selectedIndex < 0}}"
+        >
+          <text>{{currentIndex + 1 >= totalQuestions ? '▸ 生成光谱报告' : '▸ 确认采样'}}</text>
+        </button>
+      </view>
     </view>
   </view>
 </view>

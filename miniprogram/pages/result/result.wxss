@@ -1,4 +1,14 @@
 .xp-desktop {
+  min-height: 100vh;
+  background: var(--xp-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40rpx;
+  box-sizing: border-box;
+}
+
+.xp-window {
   width: 640rpx;
   max-height: 90vh;
   background: var(--xp-white);

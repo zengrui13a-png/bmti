@@ -90,27 +90,26 @@
 
 .question-area { margin-bottom: 28rpx; }
 
-/* Computer module label */
+/* Computer module label — prominent */
 .dim-meta {
-  margin-bottom: 16rpx;
+  margin-bottom: 20rpx;
 }
 
 .dim-module {
   display: block;
-  font-size: 18rpx;
+  font-size: 26rpx;
   font-family: var(--font-mono);
-  font-weight: 700;
+  font-weight: 800;
   color: var(--xp-accent);
-  letter-spacing: 2rpx;
+  letter-spacing: 3rpx;
   margin-bottom: 4rpx;
 }
 
 .dim-tagline {
   display: block;
-  font-size: 16rpx;
-  font-family: var(--font-mono);
-  color: var(--xp-text-secondary);
-  letter-spacing: 1rpx;
+  font-size: 20rpx;
+  color: var(--xp-text);
+  font-weight: 600;
 }
 
 .q-badge {
@@ -172,10 +171,24 @@
   flex-shrink: 0;
 }
 
+.opt-content {
+  flex: 1;
+}
+
 .opt-label {
-  font-size: var(--font-size-sm);
+  display: block;
+  font-size: 26rpx;
+  font-weight: 600;
   color: var(--xp-text);
   line-height: 1.4;
+}
+
+.opt-hint {
+  display: block;
+  font-size: 20rpx;
+  color: var(--xp-text-secondary);
+  line-height: 1.4;
+  margin-top: 4rpx;
 }
 
 .xp-btn-primary {

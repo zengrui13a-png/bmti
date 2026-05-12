@@ -11,7 +11,7 @@
     </view>
     <view class="xp-body">
       <view class="scan-header">
-        <text class="scan-label">正在扫描扇区 {{currentIndex + 1}}/{{totalQuestions}}</text>
+        <text class="scan-label">系统诊断 · 模块 {{currentIndex + 1}}/{{totalQuestions}}</text>
         <text class="scan-pct">{{progress}}%</text>
       </view>
       <view class="progress-track">
@@ -36,7 +36,10 @@
           bindtap="onSelectOption"
         >
           <view class="opt-radio">{{selectedIndex === index ? '●' : '○'}}</view>
-          <text class="opt-label">{{item.label}}</text>
+          <view class="opt-content">
+            <text class="opt-label">{{item.label}}</text>
+            <text class="opt-hint">{{item.hint}}</text>
+          </view>
         </view>
       </view>
 
