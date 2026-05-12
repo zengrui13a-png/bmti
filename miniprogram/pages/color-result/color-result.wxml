@@ -1,0 +1,68 @@
+<view class="cyber-screen" wx:if="{{result}}">
+  <view class="color-bg-overlay">
+    <view class="bg-color-fill" style="background-color: {{bgColor}}"></view>
+    <view class="bg-glow"></view>
+    <view class="bg-rays"></view>
+  </view>
+
+  <view class="cyber-card">
+    <view class="card-corner card-corner-tl"></view>
+    <view class="card-corner card-corner-tr"></view>
+    <view class="card-corner card-corner-bl"></view>
+    <view class="card-corner card-corner-br"></view>
+
+    <view class="scanline"></view>
+
+    <view class="card-header">
+      <text class="cyber-label">◇ SPECTRAL DIAGNOSTIC REPORT ◇</text>
+      <view class="cyber-divider">
+        <view class="divider-dot"></view>
+        <view class="divider-line"></view>
+        <view class="divider-dot"></view>
+      </view>
+    </view>
+
+    <view class="card-body">
+      <view class="model-section">
+        <text class="cyber-tag">// MODEL_ID</text>
+        <text class="model-name" style="color: {{result.color}}; text-shadow: 0 0 20rpx {{result.color}};">{{result.name}}</text>
+      </view>
+
+      <view class="spectrum-section">
+        <text class="cyber-tag">// SPECTRUM</text>
+        <view class="spectrum-bar">
+          <view class="spec-segment spec-r" style="background: {{bgColor}}; flex: 1;"></view>
+          <view class="spec-segment spec-g" style="background: {{bgColor}}; flex: 1; opacity: 0.7;"></view>
+          <view class="spec-segment spec-b" style="background: {{bgColor}}; flex: 1; opacity: 0.4;"></view>
+        </view>
+        <text class="rgba-value">{{rgba}}</text>
+      </view>
+
+      <view class="diagnosis-section">
+        <text class="cyber-tag">// DIAGNOSIS</text>
+        <text class="diagnosis-text">{{result.diagnosis}}</text>
+      </view>
+
+      <view class="note-section">
+        <text class="cyber-tag">// CHROMATIC_INSIGHT</text>
+        <text class="note-text">{{note}}</text>
+      </view>
+
+      <view class="card-footer">
+        <text class="footer-hash">0x{{result.color.replace('#','')}}</text>
+        <text class="footer-id">BMTI-RGBTI_v2.0</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="action-row">
+    <button class="cyber-btn-share" open-type="share">
+      <text class="btn-glow"></text>
+      <text class="btn-text">传输光谱报告</text>
+    </button>
+
+    <view class="xp-btn-toggle" bindtap="onRetake">
+      <text>⟲ 重新扫描</text>
+    </view>
+  </view>
+</view>

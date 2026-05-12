@@ -2,7 +2,9 @@
   "pages": [
     "pages/index/index",
     "pages/test/test",
-    "pages/result/result"
+    "pages/result/result",
+    "pages/color-test/color-test",
+    "pages/color-result/color-result"
   ],
   "window": {
     "navigationBarTitleText": "Bug人格",

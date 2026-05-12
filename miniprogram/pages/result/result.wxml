@@ -1,11 +1,6 @@
-<view class="xp-desktop {{colorMode ? 'color-mode' : ''}}" wx:if="{{result}}">
-  <!-- RGBTI color background overlay (only visible in color mode) -->
-  <view class="color-bg-overlay" wx:if="{{colorMode}}" style="background-color: {{bgColor}}">
-    <view class="bg-glow"></view>
-    <view class="bg-rays"></view>
-  </view>
+<view class="xp-desktop" wx:if="{{result}}">
 
-  <view class="xp-window {{colorMode ? 'xp-window-glass' : ''}}">
+  <view class="xp-window">
     <view class="xp-titlebar">
       <text class="xp-title-icon">{{colorMode ? '🎨' : '📋'}}</text>
       <text class="xp-title-text">诊断报告</text>
@@ -34,7 +29,7 @@
             <view class="mini-swatch" style="background: rgba({{rgbti.R}},{{rgbti.G}},{{rgbti.B}},{{rgbti.T}})"></view>
             <text class="color-code">rgba({{rgbti.R}}, {{rgbti.G}}, {{rgbti.B}}, {{rgbti.T}})</text>
           </view>
-          <text class="color-note" wx:if="{{colorMode}}">{{rgbti.note}}</text>
+          <text class="color-note">{{rgbti.note}}</text>
         </view>
 
         <view class="report-divider"></view>
@@ -60,8 +55,8 @@
       </button>
 
       <view class="toggle-row">
-        <button class="xp-btn-toggle" bindtap="onToggleColorMode">
-          {{colorMode ? '◉ 切回标准报告' : '◉ 开启色卡模式'}}
+        <button class="xp-btn-toggle" bindtap="onOpenColorMode">
+          🎨 开启色卡分析
         </button>
       </view>
 

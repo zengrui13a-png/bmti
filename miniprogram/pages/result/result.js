@@ -12,18 +12,12 @@ function formatTime(date) {
   return `${y}-${m}-${d} ${h}:${min}:${s}`
 }
 
-function genBgColor(rgbti) {
-  return 'rgba(' + rgbti.R + ',' + rgbti.G + ',' + rgbti.B + ',' + rgbti.T.toFixed(2) + ')'
-}
-
 Page({
   data: {
     result: null,
     rgbti: null,
     shareText: '',
-    currentTime: '',
-    bgColor: '',
-    colorMode: false
+    currentTime: ''
   },
 
   onLoad() {
@@ -38,18 +32,12 @@ Page({
       result: result,
       rgbti: rgbti,
       shareText: '我的出厂设置是「' + result.name + '」\n颜色: rgba(' + rgbti.R + ',' + rgbti.G + ',' + rgbti.B + ',' + rgbti.T.toFixed(2) + ')\n\n' + result.diagnosis + '\n\n测测你的Bug →',
-      currentTime: formatTime(new Date()),
-      bgColor: '',
-      colorMode: false
+      currentTime: formatTime(new Date())
     })
   },
 
-  onToggleColorMode() {
-    var colorMode = !this.data.colorMode
-    this.setData({
-      colorMode: colorMode,
-      bgColor: colorMode ? genBgColor(this.data.rgbti) : ''
-    })
+  onOpenColorMode() {
+    wx.navigateTo({ url: '/pages/color-test/color-test' })
   },
 
   onRetake() {
