@@ -1,60 +1,48 @@
-<view class="bsod-screen">
-  <view class="win-dialog">
-    <view class="win-titlebar">
-      <text class="win-title-text">系统诊断中...</text>
-      <view class="win-title-btns">
-        <view class="win-title-btn">_</view>
-        <view class="win-title-btn">□</view>
-        <view class="win-title-btn">×</view>
+<view class="xp-desktop">
+  <view class="xp-window">
+    <view class="xp-titlebar">
+      <text class="xp-title-icon">🔧</text>
+      <text class="xp-title-text">系统诊断中...</text>
+      <view class="xp-title-btns">
+        <view class="xp-btn-min">_</view>
+        <view class="xp-btn-max">□</view>
+        <view class="xp-btn-close">×</view>
       </view>
     </view>
-
-    <view class="win-body">
-      <!-- Scan progress -->
-      <view class="scan-info">
-        <text class="scan-label">正在扫描扇区:</text>
+    <view class="xp-body">
+      <view class="scan-header">
+        <text class="scan-label">正在扫描扇区 {{currentIndex + 1}}/{{totalQuestions}}</text>
         <text class="scan-pct">{{progress}}%</text>
       </view>
-      <view class="progress-bar-wrap">
-        <view class="progress-bar-fill" style="width: {{progress}}%"></view>
-        <view class="progress-bar-bg"></view>
+      <view class="progress-track">
+        <view class="progress-fill" style="width: {{progress}}%"></view>
       </view>
 
-      <!-- Question GroupBox -->
-      <view class="question-group" wx:if="{{question}}">
-        <view class="group-title">[ Q{{currentIndex + 1}} ]</view>
-        <text class="question-text">{{question.text}}</text>
+      <view class="question-area" wx:if="{{question}}">
+        <view class="q-badge">Q{{currentIndex + 1}}</view>
+        <text class="q-text">{{question.text}}</text>
       </view>
 
-      <!-- Options with radio buttons -->
       <view class="options-list">
         <view
-          class="option-item {{selectedIndex === index ? 'option-selected' : ''}}"
+          class="opt-item {{selectedIndex === index ? 'opt-selected' : ''}}"
           wx:for="{{question.options}}"
           wx:key="index"
           data-index="{{index}}"
           bindtap="onSelectOption"
         >
-          <text class="option-radio">{{selectedIndex === index ? '●' : '○'}}</text>
-          <text class="option-label">{{item.label}}</text>
+          <view class="opt-radio">{{selectedIndex === index ? '●' : '○'}}</view>
+          <text class="opt-label">{{item.label}}</text>
         </view>
       </view>
 
-      <!-- Next Step Button -->
-      <view class="win-btn-wrap">
-        <button
-          class="win-btn win-btn-primary {{selectedIndex < 0 ? 'btn-disabled' : ''}}"
-          bindtap="onNextStep"
-          disabled="{{selectedIndex < 0}}"
-        >
-          {{currentIndex + 1 >= totalQuestions ? '完成诊断' : '下一步 (Enter)'}}
-        </button>
-      </view>
+      <button
+        class="xp-btn-primary {{selectedIndex < 0 ? 'btn-disabled' : ''}}"
+        bindtap="onNextStep"
+        disabled="{{selectedIndex < 0}}"
+      >
+        {{currentIndex + 1 >= totalQuestions ? '完成诊断' : '下一步'}}
+      </button>
     </view>
-  </view>
-
-  <view class="bsod-footer">
-    <text class="bsod-text">Scanning system sectors... {{progress}}%</text>
-    <text class="bsod-text">Press Enter to continue to next diagnostic module.</text>
   </view>
 </view>
