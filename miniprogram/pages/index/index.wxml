@@ -1,27 +1,42 @@
-<view class="container">
-  <view class="hero">
-    <text class="hero-glitch">BUG人格</text>
-    <text class="hero-subtitle">Bug Management Type Indicator</text>
+<view class="bsod-screen">
+  <view class="win-dialog">
+    <view class="win-titlebar">
+      <text class="win-title-icon">!</text>
+      <text class="win-title-text">Bug人格 - BMTI诊断工具</text>
+      <view class="win-title-btns">
+        <view class="win-title-btn">_</view>
+        <view class="win-title-btn">□</view>
+        <view class="win-title-btn">×</view>
+      </view>
+    </view>
+
+    <view class="win-body">
+      <view class="cmd-block">
+        <text class="cmd-prompt">C:\Users\You> bmti.exe</text>
+        <text class="cmd-line">正在加载 Bug Management Type Indicator v1.0...</text>
+        <text class="cmd-line cmd-ok">[OK] 诊断模块已就绪。</text>
+      </view>
+
+      <view class="info-box">
+        <view class="info-box-title">! 诊断信息</view>
+        <view class="info-box-body">
+          <text class="info-line">· 扫描项目: 7 项系统检测</text>
+          <text class="info-line">· 识别范围: 16 种 Bug 模式</text>
+          <text class="info-line">· 隐私保护: 本地运行，不上传数据</text>
+        </view>
+      </view>
+
+      <view class="win-btn-wrap">
+        <button class="win-btn win-btn-primary" bindtap="onStartTest">
+          开始诊断 (S)
+        </button>
+        <text class="key-hint">或按 Enter 继续...</text>
+      </view>
+    </view>
   </view>
 
-  <view class="description">
-    <text class="desc-line">不是定义你是谁。</text>
-    <text class="desc-line accent">是诊断你怎么卡住的。</text>
-  </view>
-
-  <view class="meta-info">
-    <text class="meta-item">· 7 道诊断题</text>
-    <text class="meta-item">· 16 种出厂设置</text>
-    <text class="meta-item">· 1 份系统报告</text>
-  </view>
-
-  <view class="start-btn" bindtap="onStartTest">
-    <text class="btn-text">开始诊断</text>
-    <text class="btn-hint">[ 按下以运行检测程序 ]</text>
-  </view>
-
-  <view class="footer">
-    <text class="footer-text">没有服务器会保存你的Bug记录。</text>
-    <text class="footer-text">这一切只发生在你的设备上。</text>
+  <view class="bsod-footer">
+    <text class="bsod-text">A problem has been detected and diagnostics will now begin...</text>
+    <text class="bsod-text">Technical information: STOP 0x000000BMTI (0xBUG001, 0xSELF002, 0xDIAG003)</text>
   </view>
 </view>
