@@ -41,18 +41,17 @@
         </view>
       </view>
 
-      <button class="xp-btn-primary" open-type="share">
-        发送给懂你Bug的人
+      <button class="xp-btn-primary" bindtap="onOpenColorMode">
+        🖥 显示校准 · 生成专属光谱
       </button>
 
-      <view class="toggle-row">
-        <button class="xp-btn-toggle" bindtap="onOpenColorMode">
-          🖥 显示校准
+      <view class="secondary-actions">
+        <button class="xp-btn-secondary" open-type="share">
+          发送给懂你Bug的人
         </button>
-      </view>
-
-      <view class="retake-link" bindtap="onRetake">
-        <text class="retake-text">重新扫描</text>
+        <view class="retake-link" bindtap="onRetake">
+          <text class="retake-text">重新扫描</text>
+        </view>
       </view>
     </view>
   </view>

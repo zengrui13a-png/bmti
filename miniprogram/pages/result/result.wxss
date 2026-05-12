@@ -182,31 +182,33 @@
   background: linear-gradient(180deg, #2F71D8 0%, #1D4EA0 100%);
 }
 
-.toggle-row {
+.secondary-actions {
   display: flex;
-  justify-content: center;
-  margin-bottom: 8rpx;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+  margin-top: 4rpx;
 }
 
-.xp-btn-toggle {
+.xp-btn-secondary {
   background: transparent;
   border: 1rpx solid #D0D8E0;
-  border-radius: 20rpx;
-  padding: 10rpx 28rpx;
+  border-radius: var(--radius-sm);
+  padding: 14rpx 28rpx;
   font-size: var(--font-size-xs);
   color: var(--xp-text-secondary);
 }
 
-.xp-btn-toggle:active {
+.xp-btn-secondary:active {
   background: #F0F4F8;
 }
 
 .retake-link {
   text-align: center;
-  padding: 12rpx 0;
+  padding: 8rpx 0;
 }
 
 .retake-text {
   font-size: var(--font-size-xs);
-  color: var(--xp-accent);
+  color: var(--xp-shadow);
 }
